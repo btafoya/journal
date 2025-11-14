@@ -51,6 +51,10 @@ cp .env.example .env.local
 
 The default `.env.local` is configured for local development.
 
+**For OAuth authentication providers** (Google, GitHub, Microsoft):
+
+- See [OAuth Setup Guide](docs/OAUTH_SETUP.md) for detailed instructions on configuring OAuth providers
+
 ### 5. Initialize Prisma
 
 ```bash

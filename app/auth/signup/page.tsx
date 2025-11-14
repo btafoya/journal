@@ -53,7 +53,7 @@ export default function SignUpPage() {
 
       // Redirect to sign in page with success message
       router.push("/auth/signin?registered=true");
-    } catch (error) {
+    } catch {
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
