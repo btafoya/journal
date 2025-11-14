@@ -8,19 +8,19 @@ Please answer the following questions to help create a comprehensive Product Req
 
 ### 1.1 Project Name
 **Q:** What would you like to name this journaling application?
-**A:**
+**A:** OpenJournal
 
 ### 1.2 Primary Purpose
 **Q:** What are the top 3 primary goals/purposes for this application? (e.g., personal journaling, business documentation, knowledge management, etc.)
-**A:**
+**A:** personal journaling, business documentation, knowledge management
 
 ### 1.3 Target Users
 **Q:** Who are the primary user types? (e.g., individual users, small teams, business departments, etc.)
-**A:**
+**A:** individual users, small teams
 
 ### 1.4 Scale Expectations
 **Q:** How many concurrent users do you expect to support initially? What about in 1 year?
-**A:**
+**A:** Unknown
 
 ---
 
@@ -28,48 +28,64 @@ Please answer the following questions to help create a comprehensive Product Req
 
 ### 2.1 Journal Entry Features
 **Q:** Beyond basic text entry, what specific features do you need for journal entries?
-- [ ] Rich text formatting (bold, italic, headers, etc.)
-- [ ] Code blocks with syntax highlighting
-- [ ] Tables
-- [ ] Checklists/To-do items
-- [ ] Embedded links
+- [X] Rich text formatting (bold, italic, headers, etc.)
+- [X] Code blocks with syntax highlighting
+- [X] Tables
+- [X] Checklists/To-do items
+- [X] Embedded links
 - [ ] Mentions/Tags (@user, #tag)
-- [ ] Timestamps/date markers
+- [X] Timestamps/date markers
 - [ ] Other (please specify):
 
 **A:**
+- [X] Rich text formatting (bold, italic, headers, etc.)
+- [X] Code blocks with syntax highlighting
+- [X] Tables
+- [X] Checklists/To-do items
+- [X] Embedded links
+- [X] Timestamps/date markers
 
 ### 2.2 File & Media Support
 **Q:** What types of files should be supported?
-- [ ] Images (specify max size):
-- [ ] Documents (PDF, DOCX, etc.)
-- [ ] Audio files
-- [ ] Video files
-- [ ] Spreadsheets
+- [X] Images (specify max size):
+- [X] Documents (PDF, DOCX, etc.)
+- [X] Audio files
+- [X] Video files
+- [X] Spreadsheets
 - [ ] Max total attachment size per entry:
 
 **A:**
+- [X] Images (specify max size):
+- [X] Documents (PDF, DOCX, etc.)
+- [X] Audio files
+- [X] Video files
+- [X] Spreadsheets
 
 ### 2.3 Search Capabilities
 **Q:** What search features are essential?
-- [ ] Full-text search
+- [X] Full-text search
 - [ ] Search within attachments
-- [ ] Advanced filters (date range, category, tags, author)
-- [ ] Saved searches
-- [ ] Search history
-- [ ] Fuzzy search
+- [X] Advanced filters (date range, category, tags, author)
+- [X] Saved searches
+- [X] Search history
+- [X] Fuzzy search
 
 **A:**
+- [X] Full-text search
+- [X] Advanced filters (date range, category, tags, author)
+- [X] Saved searches
+- [X] Search history
+- [X] Fuzzy search
 
 ### 2.4 Organization Features
 **Q:** How deep should category nesting go? (e.g., unlimited, max 5 levels, etc.)
-**A:**
+**A:** unlimited
 
 **Q:** Should users be able to assign multiple categories to a single entry?
-**A:**
+**A:** yes
 
 **Q:** Do you want tags separate from categories? If yes, how should they work?
-**A:**
+**A:** no
 
 ### 2.5 Versioning & History
 **Q:** Should entries maintain version history?
@@ -78,35 +94,42 @@ Please answer the following questions to help create a comprehensive Product Req
 - Should there be a change log/audit trail?
 
 **A:**
-
+- If yes, how many versions should be kept? unlimited
+- Should users be able to restore previous versions? yes
+- Should there be a change log/audit trail? yes
 ---
 
 ## 3. USER MANAGEMENT & ACCESS CONTROL
 
 ### 3.1 Authentication
 **Q:** What authentication methods should be supported?
-- [ ] Email/Password
-- [ ] OAuth (Google, GitHub, Microsoft, etc.)
-- [ ] Two-Factor Authentication (2FA)
+- [X] Email/Password
+- [X] OAuth (Google, GitHub, Microsoft, etc.)
+- [X] Two-Factor Authentication (2FA)
 - [ ] SSO (SAML, LDAP)
 - [ ] Magic links
 
 **A:**
+- [X] Email/Password
+- [X] OAuth (Google, GitHub, Microsoft, etc.)
+- [X] Two-Factor Authentication (2FA)
 
 ### 3.2 User Roles & Permissions
 **Q:** What user roles do you need? (e.g., Admin, Editor, Viewer, etc.)
-**A:**
+**A:** Admin, Editor, Viewer
 
 **Q:** Should users be able to share entries with specific users or groups?
-**A:**
+**A:** Yes
 
 **Q:** What permission levels should be available for shared entries?
-- [ ] View only
-- [ ] Comment
+- [X] View only
+- [X] Comment
 - [ ] Edit
 - [ ] Full control (delete, share, etc.)
 
 **A:**
+- [X] View only
+- [X] Comment
 
 ### 3.3 Personal vs. Business Use
 **Q:** How should personal and business journals be separated?
@@ -115,7 +138,9 @@ Please answer the following questions to help create a comprehensive Product Req
 - Tag-based organization?
 
 **A:**
-
+- Separate workspaces? Yes
+- Different categories? Yes
+- Tag-based organization? N/A
 ---
 
 ## 4. SECURITY & PRIVACY
@@ -128,17 +153,21 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Encrypted file storage
 
 **A:**
+- [X] Data at rest encryption
+- [X] Data in transit (HTTPS/TLS)
+- [X] End-to-end encryption for entries
+- [X] Encrypted file storage (stored in postgres)
 
 ### 4.2 Data Privacy
 **Q:** Should entries be private by default?
-**A:**
+**A:** Yes
 
 **Q:** Do you need GDPR compliance features (data export, right to be forgotten, etc.)?
-**A:**
+**A:** Yes
 
 ### 4.3 Audit & Compliance
 **Q:** Do you need audit logs for security/compliance?
-**A:**
+**A:** Yes
 
 ---
 
@@ -153,6 +182,8 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Other (please specify):
 
 **A:**
+- [X] AI assistant integration
+- [X] Smart search
 
 ### 5.2 MCP Features
 **Q:** What specific MCP tools/resources should be exposed?
@@ -162,10 +193,13 @@ Please answer the following questions to help create a comprehensive Product Req
 - Analytics?
 
 **A:**
+- Journal entry CRUD operations? Yes
+- Search functionality? Yes
+- Category management? Yes
 
 ### 5.3 External Access
 **Q:** Should the MCP server be accessible to external clients or only internal to the app?
-**A:**
+**A:** External using http transport
 
 ---
 
@@ -178,24 +212,30 @@ Please answer the following questions to help create a comprehensive Product Req
 - Overall aesthetic (modern, minimal, professional, etc.):
 
 **A:**
+- https://solid-tailwind.preview.uideck.com/
+- Light/Dark mode support
+- Professional
 
 ### 6.2 Layout Preferences
 **Q:** What layout structure do you prefer?
-- [ ] Sidebar navigation (like Evernote)
+- [X] Sidebar navigation (like Evernote)
 - [ ] Tree view (like TrilliumNext)
 - [ ] Horizontal tabs
-- [ ] Dashboard view
+- [X] Dashboard view
 - [ ] Other:
 
 **A:**
+- [X] Sidebar navigation (like Evernote)
+- [X] Dashboard view
 
 ### 6.3 Mobile Experience
 **Q:** Should this be mobile-responsive?
-- [ ] Yes, fully responsive web app
+- [X] Yes, fully responsive web app
 - [ ] Progressive Web App (PWA) with offline support
 - [ ] Native mobile apps (future consideration)
 
 **A:**
+- [X] Yes, fully responsive web app
 
 ### 6.4 Editor Preferences
 **Q:** For the WYSIWYG editor, do you have a preference?
@@ -206,40 +246,44 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Other:
 
 **A:**
-
+Best fit
 ---
 
 ## 7. COLLABORATION FEATURES
 
 ### 7.1 Real-time Collaboration
 **Q:** Should multiple users be able to edit the same entry simultaneously?
-**A:**
+**A:** No
 
 ### 7.2 Comments & Discussions
 **Q:** Should entries support comments/discussions?
-**A:**
+**A:** Yes
 
 ### 7.3 Notifications
 **Q:** What types of notifications should users receive?
-- [ ] Email notifications
+- [X] Email notifications
 - [ ] In-app notifications
 - [ ] Browser push notifications
 - Events to notify about (shares, comments, mentions, etc.):
 
 **A:**
-
+- [X] Email notifications
 ---
 
 ## 8. IMPORT/EXPORT & INTEGRATIONS
 
 ### 8.1 Import Capabilities
 **Q:** Should users be able to import from other platforms?
-- [ ] Evernote (.enex)
-- [ ] Markdown files
+- [X] Evernote (.enex)
+- [X] Markdown files
 - [ ] HTML files
 - [ ] Other formats:
 
 **A:**
+- [X] Evernote (.enex)
+- [X] Markdown files
+- [X] HTML files
+- [X] TrilliamNotes
 
 ### 8.2 Export Capabilities
 **Q:** What export formats should be supported?
@@ -250,10 +294,15 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Backup (full database export)
 
 **A:**
+- [X] Markdown
+- [X] PDF
+- [X] HTML
+- [X] JSON
+- [X] Backup (full database export)
 
 ### 8.3 API Access
 **Q:** Should there be a public API for third-party integrations?
-**A:**
+**A:** No
 
 ---
 
@@ -266,10 +315,13 @@ Please answer the following questions to help create a comprehensive Product Req
 - Maximum entries per user:
 
 **A:**
+- Page load time: Fast
+- Search response time: Fast
+- Maximum entries per user: Unknowen
 
 ### 9.2 Offline Support
 **Q:** Should the app work offline with sync when back online?
-**A:**
+**A:** No
 
 ---
 
@@ -277,16 +329,16 @@ Please answer the following questions to help create a comprehensive Product Req
 
 ### 10.1 Hosting Preferences
 **Q:** Where do you plan to host this?
-- [ ] Self-hosted (own infrastructure)
-- [ ] Cloud provider (AWS, GCP, Azure, etc.)
-- [ ] Docker containers
+- [X] Self-hosted (own infrastructure)
+- [X] Cloud provider (AWS, GCP, Azure, etc.)
+- [X] Docker containers
 - [ ] Kubernetes
 
 **A:**
 
 ### 10.2 Database
 **Q:** Any specific PostgreSQL version requirements or extensions needed?
-**A:**
+**A:** Latest
 
 ---
 
@@ -302,10 +354,11 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Other:
 
 **A:**
+None
 
 ### 11.2 Admin Dashboard
 **Q:** What should admins be able to monitor/manage?
-**A:**
+**A:** Users
 
 ---
 
@@ -318,10 +371,13 @@ Please answer the following questions to help create a comprehensive Product Req
 - Backup destinations:
 
 **A:**
+- Automated backups frequency: Daily
+- Retention period: 1 month
+- Backup destinations: Offsite SSH
 
 ### 12.2 Disaster Recovery
 **Q:** What's your Recovery Point Objective (RPO) and Recovery Time Objective (RTO)?
-**A:**
+**A:** Unknown
 
 ---
 
@@ -329,15 +385,15 @@ Please answer the following questions to help create a comprehensive Product Req
 
 ### 13.1 Evernote Features
 **Q:** Which specific Evernote features did you love and want to include?
-**A:**
+**A:** No
 
 ### 13.2 TrilliumNext Features
 **Q:** Which specific TrilliumNext features did you love and want to include?
-**A:**
+**A:** No
 
 ### 13.3 Improvements
 **Q:** What did you wish Evernote or TrilliumNext did better that you want to improve in this app?
-**A:**
+**A:** No
 
 ---
 
@@ -351,6 +407,7 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Other:
 
 **A:**
+MIT
 
 ### 14.2 Documentation
 **Q:** What level of documentation should be provided?
@@ -361,6 +418,7 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Architecture documentation
 
 **A:**
+All
 
 ### 14.3 Community Features
 **Q:** Should there be community features built-in?
@@ -370,6 +428,7 @@ Please answer the following questions to help create a comprehensive Product Req
 - [ ] Community forums
 
 **A:**
+All
 
 ---
 
@@ -377,15 +436,15 @@ Please answer the following questions to help create a comprehensive Product Req
 
 ### 15.1 MVP Features
 **Q:** What are the must-have features for the initial MVP release?
-**A:**
+**A:** All
 
 ### 15.2 Phase 2 Features
 **Q:** What features can wait for a later release?
-**A:**
+**A:** None
 
 ### 15.3 Launch Timeline
 **Q:** What's your target timeline for the MVP?
-**A:**
+**A:** ASAP
 
 ---
 
@@ -393,15 +452,15 @@ Please answer the following questions to help create a comprehensive Product Req
 
 ### 16.1 Accessibility
 **Q:** What accessibility standards should be met? (WCAG 2.1 AA, etc.)
-**A:**
+**A:** Best for Open Source
 
 ### 16.2 Internationalization
 **Q:** Should the app support multiple languages?
-**A:**
+**A:** Future
 
 ### 16.3 Other Considerations
 **Q:** Any other specific requirements, constraints, or features not covered above?
-**A:**
+**A:** None
 
 ---
 
