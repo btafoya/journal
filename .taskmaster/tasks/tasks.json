@@ -9,9 +9,9 @@
         "testStrategy": "Verify that the project builds successfully and the development environment is correctly set up. Ensure Docker containers run without errors.",
         "priority": "high",
         "dependencies": [],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [],
-        "updatedAt": "2025-11-14T18:04:59.511Z"
+        "updatedAt": "2025-11-14T18:10:43.246Z"
       },
       {
         "id": "2",
@@ -21,8 +21,60 @@
         "testStrategy": "Write unit tests for authentication flows. Perform integration tests for OAuth providers and verify two-factor authentication functionality.",
         "priority": "high",
         "dependencies": ["1"],
-        "status": "pending",
-        "subtasks": []
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set Up NextAuth.js for Authentication",
+            "description": "Initialize NextAuth.js in the project for handling authentication.",
+            "dependencies": [],
+            "details": "Install NextAuth.js and configure it in the application. Set up the basic authentication flow.",
+            "status": "pending",
+            "testStrategy": "Verify NextAuth.js setup with a basic login flow.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Implement Email/Password Login and Registration",
+            "description": "Develop the functionality for users to register and log in using email and password.",
+            "dependencies": [1],
+            "details": "Create API routes for registration and login. Store user credentials securely in the database.",
+            "status": "pending",
+            "testStrategy": "Write unit tests for registration and login endpoints.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Integrate OAuth with Google, GitHub, and Microsoft",
+            "description": "Add OAuth authentication using Google, GitHub, and Microsoft providers.",
+            "dependencies": [1],
+            "details": "Configure OAuth providers in NextAuth.js. Ensure proper callback handling and user session management.",
+            "status": "pending",
+            "testStrategy": "Perform integration tests for each OAuth provider.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Set Up Two-Factor Authentication Using TOTP",
+            "description": "Implement two-factor authentication using Time-based One-Time Password (TOTP).",
+            "dependencies": [2],
+            "details": "Use a library like speakeasy to generate TOTP codes. Allow users to enable/disable two-factor authentication.",
+            "status": "pending",
+            "testStrategy": "Verify TOTP setup and login flow with two-factor authentication.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Implement Password Reset and Email Verification Flows",
+            "description": "Develop password reset and email verification functionalities.",
+            "dependencies": [2],
+            "details": "Create API routes for password reset and email verification. Send emails using a service like SendGrid.",
+            "status": "pending",
+            "testStrategy": "Test email sending and link handling for password reset and verification.",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2025-11-14T18:15:18.029Z"
       },
       {
         "id": "3",
@@ -115,9 +167,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-11-14T18:04:59.512Z",
+      "lastModified": "2025-11-14T18:15:18.030Z",
       "taskCount": 10,
-      "completedCount": 0,
+      "completedCount": 1,
       "tags": ["master"]
     }
   }
