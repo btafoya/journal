@@ -9,17 +9,21 @@
 ## 1. EXECUTIVE SUMMARY
 
 ### 1.1 Product Overview
+
 OpenJournal is an open-source, feature-rich journaling application designed to serve both personal and business documentation needs with enterprise-grade security and flexibility. Built on Next.js 14 and PostgreSQL, OpenJournal combines the intuitive organization of Evernote with robust knowledge management capabilities, offering users a comprehensive solution for capturing, organizing, and retrieving information.
 
 ### 1.2 Product Vision
+
 To create the definitive open-source journaling platform that empowers individuals and teams to capture, organize, and leverage their knowledge without compromising security, privacy, or user experience.
 
 ### 1.3 Target Market
+
 - **Primary:** Individual users seeking a secure, feature-rich personal journaling solution
 - **Secondary:** Small teams requiring collaborative documentation and knowledge management
 - **Tertiary:** Open-source communities and self-hosted solution enthusiasts
 
 ### 1.4 Key Differentiators
+
 - End-to-end encryption for maximum privacy
 - Unlimited version history with complete audit trails
 - MCP (Model Context Protocol) server integration for AI-enhanced workflows
@@ -32,12 +36,14 @@ To create the definitive open-source journaling platform that empowers individua
 ## 2. CORE OBJECTIVES
 
 ### 2.1 Business Goals
+
 - Launch MVP with comprehensive feature set within aggressive timeline
 - Build thriving open-source community with plugin and theme ecosystem
 - Establish OpenJournal as the leading self-hosted journaling solution
 - Enable seamless migration from legacy platforms (Evernote, TrilliumNext)
 
 ### 2.2 User Goals
+
 - **Individual Users:**
   - Secure, private space for personal journaling and knowledge capture
   - Rich media support with powerful organization capabilities
@@ -51,6 +57,7 @@ To create the definitive open-source journaling platform that empowers individua
   - Audit trails for compliance and accountability
 
 ### 2.3 Technical Goals
+
 - High-performance application with fast page loads and responsive search
 - Scalable architecture supporting growth from individual to team usage
 - Comprehensive security with encryption at rest and in transit
@@ -62,27 +69,33 @@ To create the definitive open-source journaling platform that empowers individua
 ## 3. USER PERSONAS
 
 ### 3.1 Primary Persona: Sarah - Personal Knowledge Manager
+
 **Demographics:** 32, Software Engineer, Tech-savvy
 **Goals:**
+
 - Maintain personal journal with code snippets and technical notes
 - Organize knowledge across multiple categories (work, personal, learning)
 - Search quickly across years of entries
 - Keep data private and under personal control
 
 **Pain Points:**
+
 - Cloud services don't provide adequate privacy
 - Vendor lock-in with proprietary formats
 - Limited code syntax highlighting in existing tools
 
 ### 3.2 Secondary Persona: Michael - Team Lead
+
 **Demographics:** 40, Engineering Manager, Team of 8
 **Goals:**
+
 - Document team decisions and technical specifications
 - Share knowledge with team members
 - Track changes and maintain audit trail for compliance
 - Separate personal notes from team documentation
 
 **Pain Points:**
+
 - Need better organization than wiki systems
 - Want more privacy than cloud document services
 - Lack of granular permission controls
@@ -95,6 +108,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.1 Journal Entry Management
 
 #### 4.1.1 Rich Text Editor
+
 - **FR-001:** WYSIWYG editor supporting bold, italic, underline, strikethrough
 - **FR-002:** Multiple heading levels (H1-H6) for document structure
 - **FR-003:** Bulleted and numbered lists with nesting support
@@ -109,6 +123,7 @@ To create the definitive open-source journaling platform that empowers individua
 **Editor Selection:** System will evaluate and select best-fit editor (TipTap, Quill, ProseMirror, or Draft.js) based on feature requirements and Next.js 14 compatibility.
 
 #### 4.1.2 File & Media Attachments
+
 - **FR-011:** Image upload and embedding with preview
 - **FR-012:** Document attachment support (PDF, DOCX, XLSX, etc.)
 - **FR-013:** Audio file attachment and playback
@@ -119,6 +134,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-018:** Encrypted file storage in PostgreSQL
 
 #### 4.1.3 Entry Operations
+
 - **FR-019:** Create new entry with template support
 - **FR-020:** Edit existing entries with auto-save
 - **FR-021:** Delete entries with confirmation
@@ -129,6 +145,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.2 Organization & Navigation
 
 #### 4.2.1 Category System
+
 - **FR-025:** Unlimited category nesting depth
 - **FR-026:** Multiple category assignment per entry
 - **FR-027:** Category creation, rename, delete, and reorganization
@@ -137,6 +154,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-030:** Category statistics (entry count, size)
 
 #### 4.2.2 Search & Discovery
+
 - **FR-031:** Full-text search across all entry content
 - **FR-032:** Advanced filters: date range, category, author
 - **FR-033:** Saved search queries for frequent searches
@@ -147,6 +165,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-038:** Real-time search suggestions
 
 #### 4.2.3 Navigation
+
 - **FR-039:** Sidebar navigation with collapsible categories
 - **FR-040:** Dashboard view showing recent entries and statistics
 - **FR-041:** Quick access to recently viewed entries
@@ -156,6 +175,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.3 Version Control & History
 
 #### 4.3.1 Version Management
+
 - **FR-044:** Automatic version creation on entry save
 - **FR-045:** Unlimited version retention
 - **FR-046:** Version comparison view (diff visualization)
@@ -167,6 +187,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.4 User Management
 
 #### 4.4.1 Authentication
+
 - **FR-051:** Email/password registration and login
 - **FR-052:** OAuth integration (Google, GitHub, Microsoft)
 - **FR-053:** Two-factor authentication (TOTP)
@@ -176,6 +197,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-057:** Remember me functionality
 
 #### 4.4.2 User Roles
+
 - **FR-058:** Three role types: Admin, Editor, Viewer
 - **FR-059:** Admin: Full system access and user management
 - **FR-060:** Editor: Create, edit, delete own entries
@@ -183,6 +205,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-062:** Role assignment by workspace admins
 
 #### 4.4.3 User Profile
+
 - **FR-063:** Customizable profile information
 - **FR-064:** Profile picture upload
 - **FR-065:** Email preferences management
@@ -192,6 +215,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.5 Workspace & Collaboration
 
 #### 4.5.1 Workspace Management
+
 - **FR-068:** Multiple workspace support per user
 - **FR-069:** Personal and business workspace separation
 - **FR-070:** Workspace creation, rename, delete
@@ -200,6 +224,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-073:** Default workspace preference
 
 #### 4.5.2 Sharing & Permissions
+
 - **FR-074:** Share individual entries with users
 - **FR-075:** Share categories with users or groups
 - **FR-076:** Permission levels: View Only, Comment
@@ -208,6 +233,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-079:** Sharing activity log
 
 #### 4.5.3 Comments & Discussion
+
 - **FR-080:** Comment on shared entries
 - **FR-081:** Threaded comment discussions
 - **FR-082:** Comment editing and deletion
@@ -217,6 +243,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.6 Import & Export
 
 #### 4.6.1 Import Capabilities
+
 - **FR-085:** Import from Evernote (.enex format)
 - **FR-086:** Import Markdown files with frontmatter
 - **FR-087:** Import HTML files with metadata preservation
@@ -225,6 +252,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-090:** Import error handling and reporting
 
 #### 4.6.2 Export Capabilities
+
 - **FR-091:** Export entries to Markdown
 - **FR-092:** Export entries to PDF with formatting
 - **FR-093:** Export entries to HTML
@@ -236,6 +264,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.7 MCP Server Integration
 
 #### 4.7.1 MCP Server Features
+
 - **FR-098:** MCP server for AI assistant integration
 - **FR-099:** Smart search capabilities via MCP
 - **FR-100:** Journal entry CRUD operations via MCP tools
@@ -248,6 +277,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 4.8 Security & Privacy
 
 #### 4.8.1 Encryption
+
 - **FR-106:** Data at rest encryption for database
 - **FR-107:** HTTPS/TLS for all data in transit
 - **FR-108:** End-to-end encryption for entry content
@@ -256,6 +286,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-111:** Encryption status indicators in UI
 
 #### 4.8.2 Privacy Controls
+
 - **FR-112:** Entries private by default
 - **FR-113:** Explicit sharing consent required
 - **FR-114:** GDPR compliance features:
@@ -266,6 +297,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **FR-115:** Privacy policy and terms display
 
 #### 4.8.3 Audit & Compliance
+
 - **FR-116:** Comprehensive audit logs for security events
 - **FR-117:** User activity tracking
 - **FR-118:** Access logs for shared entries
@@ -279,6 +311,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 5.1 Performance
 
 #### 5.1.1 Response Time Requirements
+
 - **NFR-001:** Page load time < 2 seconds on standard broadband
 - **NFR-002:** Search response time < 500ms for typical queries
 - **NFR-003:** Entry save operation < 1 second
@@ -286,6 +319,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **NFR-005:** File upload with progress feedback
 
 #### 5.1.2 Scalability
+
 - **NFR-006:** Support for unlimited entries per user
 - **NFR-007:** Efficient handling of large entries (>10,000 words)
 - **NFR-008:** Optimize database queries for large datasets
@@ -295,6 +329,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 5.2 Usability
 
 #### 5.2.1 User Experience
+
 - **NFR-011:** Mobile-responsive design (320px to 4K displays)
 - **NFR-012:** Professional aesthetic consistent with design reference
 - **NFR-013:** Light and dark mode support
@@ -302,6 +337,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **NFR-015:** Consistent UI patterns throughout application
 
 #### 5.2.2 Accessibility
+
 - **NFR-016:** WCAG 2.1 AA compliance minimum
 - **NFR-017:** Keyboard navigation for all functions
 - **NFR-018:** Screen reader compatibility
@@ -311,12 +347,14 @@ To create the definitive open-source journaling platform that empowers individua
 ### 5.3 Reliability
 
 #### 5.3.1 Availability
+
 - **NFR-021:** 99.5% uptime target for self-hosted deployments
 - **NFR-022:** Graceful degradation when services unavailable
 - **NFR-023:** Auto-save preventing data loss on crashes
 - **NFR-024:** Database connection pooling and failover
 
 #### 5.3.2 Data Integrity
+
 - **NFR-025:** Database transactions for consistency
 - **NFR-026:** Automated backup system (daily frequency)
 - **NFR-027:** Backup retention for 30 days
@@ -326,6 +364,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 5.4 Security
 
 #### 5.4.1 Application Security
+
 - **NFR-030:** Protection against OWASP Top 10 vulnerabilities
 - **NFR-031:** SQL injection prevention
 - **NFR-032:** XSS (Cross-Site Scripting) prevention
@@ -335,6 +374,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **NFR-036:** Input validation and sanitization
 
 #### 5.4.2 Data Security
+
 - **NFR-037:** Encryption for sensitive data fields
 - **NFR-038:** Secure password hashing (bcrypt or Argon2)
 - **NFR-039:** Secure file upload validation
@@ -343,6 +383,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 5.5 Maintainability
 
 #### 5.5.1 Code Quality
+
 - **NFR-041:** TypeScript for type safety
 - **NFR-042:** ESLint and Prettier for code consistency
 - **NFR-043:** Comprehensive code comments
@@ -350,6 +391,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **NFR-045:** Integration test coverage for critical paths
 
 #### 5.5.2 Documentation
+
 - **NFR-046:** API documentation (OpenAPI/Swagger)
 - **NFR-047:** User guide with screenshots and examples
 - **NFR-048:** Developer setup guide
@@ -359,6 +401,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 5.6 Deployment
 
 #### 5.6.1 Infrastructure
+
 - **NFR-051:** Docker containerization
 - **NFR-052:** Docker Compose for local development
 - **NFR-053:** Cloud provider compatibility (AWS, GCP, Azure)
@@ -366,6 +409,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **NFR-055:** Environment variable configuration
 
 #### 5.6.2 Database
+
 - **NFR-056:** Latest stable PostgreSQL version
 - **NFR-057:** Database migration system (Prisma or TypeORM)
 - **NFR-058:** Database indexing for performance
@@ -378,6 +422,7 @@ To create the definitive open-source journaling platform that empowers individua
 ### 6.1 Technology Stack
 
 #### 6.1.1 Frontend
+
 - **Framework:** Next.js 14 (React-based)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS (based on solid-tailwind design system)
@@ -387,6 +432,7 @@ To create the definitive open-source journaling platform that empowers individua
 - **Forms:** React Hook Form with Zod validation
 
 #### 6.1.2 Backend
+
 - **Framework:** Next.js 14 API Routes
 - **Language:** TypeScript
 - **ORM:** Prisma or TypeORM
@@ -395,10 +441,12 @@ To create the definitive open-source journaling platform that empowers individua
 - **MCP Server:** Custom implementation with HTTP transport
 
 #### 6.1.3 Database
+
 - **Primary Database:** PostgreSQL (latest stable)
 - **Extensions:** pgcrypto (encryption), pg_trgm (fuzzy search)
 
 #### 6.1.4 Infrastructure
+
 - **Containerization:** Docker
 - **Orchestration:** Docker Compose
 - **Reverse Proxy:** Nginx (recommended)
@@ -449,12 +497,14 @@ To create the definitive open-source journaling platform that empowers individua
 ### 6.3 Data Flow
 
 #### 6.3.1 Entry Creation Flow
+
 ```
 User → Editor Component → Auto-save → API Route → Service Layer →
 Database (Encrypted) → Version Created → Audit Log → Response → UI Update
 ```
 
 #### 6.3.2 Search Flow
+
 ```
 User Query → Search Component → API Route → Search Service →
 PostgreSQL Full-Text Search → Fuzzy Match → Results Ranked →
@@ -462,6 +512,7 @@ Highlights Applied → Response → UI Display
 ```
 
 #### 6.3.3 MCP Integration Flow
+
 ```
 AI Assistant → MCP Client → HTTP Transport → MCP Server →
 Authentication → Tool/Resource Handler → Database → Response →
@@ -471,6 +522,7 @@ AI Assistant Processing
 ### 6.4 Security Architecture
 
 #### 6.4.1 Defense in Depth
+
 - **Layer 1:** HTTPS/TLS encryption for all traffic
 - **Layer 2:** Authentication and authorization middleware
 - **Layer 3:** Input validation and sanitization
@@ -480,6 +532,7 @@ AI Assistant Processing
 - **Layer 7:** Regular security updates and scanning
 
 #### 6.4.2 Encryption Flow
+
 ```
 User Input → Client-side Validation →
 HTTPS Transport (TLS 1.3) → Server Validation →
@@ -494,6 +547,7 @@ PostgreSQL Storage
 ### 7.1 Core Entities
 
 #### 7.1.1 User
+
 ```typescript
 interface User {
   id: string (UUID)
@@ -512,6 +566,7 @@ interface User {
 ```
 
 #### 7.1.2 Workspace
+
 ```typescript
 interface Workspace {
   id: string (UUID)
@@ -524,6 +579,7 @@ interface Workspace {
 ```
 
 #### 7.1.3 Entry
+
 ```typescript
 interface Entry {
   id: string (UUID)
@@ -540,6 +596,7 @@ interface Entry {
 ```
 
 #### 7.1.4 Category
+
 ```typescript
 interface Category {
   id: string (UUID)
@@ -555,6 +612,7 @@ interface Category {
 ```
 
 #### 7.1.5 EntryCategory (Many-to-Many)
+
 ```typescript
 interface EntryCategory {
   entry_id: string (FK → Entry)
@@ -564,6 +622,7 @@ interface EntryCategory {
 ```
 
 #### 7.1.6 EntryVersion
+
 ```typescript
 interface EntryVersion {
   id: string (UUID)
@@ -578,6 +637,7 @@ interface EntryVersion {
 ```
 
 #### 7.1.7 File
+
 ```typescript
 interface File {
   id: string (UUID)
@@ -593,6 +653,7 @@ interface File {
 ```
 
 #### 7.1.8 Share
+
 ```typescript
 interface Share {
   id: string (UUID)
@@ -607,6 +668,7 @@ interface Share {
 ```
 
 #### 7.1.9 Comment
+
 ```typescript
 interface Comment {
   id: string (UUID)
@@ -621,6 +683,7 @@ interface Comment {
 ```
 
 #### 7.1.10 AuditLog
+
 ```typescript
 interface AuditLog {
   id: string (UUID)
@@ -636,6 +699,7 @@ interface AuditLog {
 ```
 
 #### 7.1.11 SavedSearch
+
 ```typescript
 interface SavedSearch {
   id: string (UUID)
@@ -650,6 +714,7 @@ interface SavedSearch {
 ### 7.2 Database Indexes
 
 #### 7.2.1 Performance Indexes
+
 ```sql
 -- User lookup
 CREATE INDEX idx_users_email ON users(email);
@@ -709,12 +774,14 @@ Comment ──< Comment (parent-child threading)
 ### 8.1 Design System
 
 #### 8.1.1 Visual Style
+
 - **Design Reference:** https://solid-tailwind.preview.uideck.com/
 - **Aesthetic:** Professional, clean, modern
 - **Framework:** Tailwind CSS with shadcn/ui components
 - **Theme Support:** Light and dark modes with system preference detection
 
 #### 8.1.2 Layout Structure
+
 - **Primary Navigation:** Sidebar with workspace switcher and category tree
 - **Main Content:** Entry editor or dashboard view
 - **Secondary Actions:** Toolbar with search, create, share options
@@ -726,6 +793,7 @@ Comment ──< Comment (parent-child threading)
 ### 8.2 Key Screens
 
 #### 8.2.1 Dashboard View
+
 - **Header:** Workspace switcher, search bar, user menu
 - **Left Sidebar:**
   - Quick actions (New Entry button)
@@ -739,6 +807,7 @@ Comment ──< Comment (parent-child threading)
 - **Footer:** Version info, help link
 
 #### 8.2.2 Entry Editor View
+
 - **Header:** Breadcrumb navigation, entry title, save status
 - **Toolbar:** Rich text formatting controls, insert options (image, file, table, code block)
 - **Editor Area:** WYSIWYG editor with live preview
@@ -751,6 +820,7 @@ Comment ──< Comment (parent-child threading)
 - **Auto-save Indicator:** Persistent status in header
 
 #### 8.2.3 Search Results View
+
 - **Search Bar:** Prominent with advanced filter toggle
 - **Filters Panel:**
   - Date range picker
@@ -765,6 +835,7 @@ Comment ──< Comment (parent-child threading)
 - **Pagination:** Infinite scroll or pagination controls
 
 #### 8.2.4 Category Management View
+
 - **Tree View:** Hierarchical category display with drag-and-drop
 - **Operations:**
   - Create new category (modal)
@@ -777,6 +848,7 @@ Comment ──< Comment (parent-child threading)
   - Entry count display
 
 #### 8.2.5 Settings View
+
 - **Navigation Tabs:**
   - Profile (name, email, password, 2FA)
   - Preferences (theme, default workspace, email notifications)
@@ -787,6 +859,7 @@ Comment ──< Comment (parent-child threading)
 ### 8.3 Component Specifications
 
 #### 8.3.1 Navigation Sidebar
+
 ```
 Width: 280px (desktop), 100% (mobile)
 Background: bg-white dark:bg-gray-900
@@ -800,6 +873,7 @@ Components:
 ```
 
 #### 8.3.2 Rich Text Editor
+
 ```
 Min Height: 500px
 Background: bg-white dark:bg-gray-900
@@ -814,6 +888,7 @@ Features:
 ```
 
 #### 8.3.3 Modal Dialogs
+
 ```
 Max Width: 600px (default), 800px (large)
 Background: Overlay with backdrop blur
@@ -828,6 +903,7 @@ Types:
 ### 8.4 Interaction Patterns
 
 #### 8.4.1 Keyboard Shortcuts
+
 ```
 Global:
 - Cmd/Ctrl + K: Open search
@@ -843,11 +919,13 @@ Editor:
 ```
 
 #### 8.4.2 Drag and Drop
+
 - Reorder categories in tree
 - Assign entries to categories
 - Upload files to entry
 
 #### 8.4.3 Context Menus
+
 - Right-click on entry: Open, Edit, Share, Delete, Duplicate
 - Right-click on category: Rename, Delete, New Subcategory
 - Right-click on file: Download, Remove, Replace
@@ -859,6 +937,7 @@ Editor:
 ### 9.1 MCP Server Integration
 
 #### 9.1.1 MCP Server Architecture
+
 ```
 ┌─────────────────────────────────────────┐
 │        MCP Server (HTTP Transport)      │
@@ -886,82 +965,88 @@ Editor:
 #### 9.1.2 MCP Tools
 
 **Tool: create_entry**
+
 ```typescript
 interface CreateEntryTool {
-  name: "create_entry"
-  description: "Create a new journal entry"
+  name: "create_entry";
+  description: "Create a new journal entry";
   inputSchema: {
-    type: "object"
+    type: "object";
     properties: {
-      title: { type: "string" }
-      content: { type: "string" }
-      workspace_id: { type: "string" }
-      category_ids?: { type: "array", items: { type: "string" } }
-    }
-    required: ["title", "content", "workspace_id"]
-  }
+      title: { type: "string" };
+      content: { type: "string" };
+      workspace_id: { type: "string" };
+      category_ids?: { type: "array"; items: { type: "string" } };
+    };
+    required: ["title", "content", "workspace_id"];
+  };
 }
 ```
 
 **Tool: search_entries**
+
 ```typescript
 interface SearchEntriesTool {
-  name: "search_entries"
-  description: "Search journal entries with smart ranking"
+  name: "search_entries";
+  description: "Search journal entries with smart ranking";
   inputSchema: {
-    type: "object"
+    type: "object";
     properties: {
-      query: { type: "string" }
-      workspace_id: { type: "string" }
-      category_ids?: { type: "array" }
-      date_from?: { type: "string" }
-      date_to?: { type: "string" }
-      limit?: { type: "number" }
-    }
-    required: ["query", "workspace_id"]
-  }
+      query: { type: "string" };
+      workspace_id: { type: "string" };
+      category_ids?: { type: "array" };
+      date_from?: { type: "string" };
+      date_to?: { type: "string" };
+      limit?: { type: "number" };
+    };
+    required: ["query", "workspace_id"];
+  };
 }
 ```
 
 **Tool: list_categories**
+
 ```typescript
 interface ListCategoriesTool {
-  name: "list_categories"
-  description: "Get category hierarchy for a workspace"
+  name: "list_categories";
+  description: "Get category hierarchy for a workspace";
   inputSchema: {
-    type: "object"
+    type: "object";
     properties: {
-      workspace_id: { type: "string" }
-      parent_id?: { type: "string" }
-    }
-    required: ["workspace_id"]
-  }
+      workspace_id: { type: "string" };
+      parent_id?: { type: "string" };
+    };
+    required: ["workspace_id"];
+  };
 }
 ```
 
 #### 9.1.3 MCP Resources
 
 **Resource: workspace://entries**
+
 ```typescript
 interface EntriesResource {
-  uri: "workspace://{workspace_id}/entries"
-  name: "Journal Entries"
-  description: "Access journal entries for a workspace"
-  mimeType: "application/json"
+  uri: "workspace://{workspace_id}/entries";
+  name: "Journal Entries";
+  description: "Access journal entries for a workspace";
+  mimeType: "application/json";
 }
 ```
 
 **Resource: workspace://categories**
+
 ```typescript
 interface CategoriesResource {
-  uri: "workspace://{workspace_id}/categories"
-  name: "Categories"
-  description: "Category hierarchy for a workspace"
-  mimeType: "application/json"
+  uri: "workspace://{workspace_id}/categories";
+  name: "Categories";
+  description: "Category hierarchy for a workspace";
+  mimeType: "application/json";
 }
 ```
 
 #### 9.1.4 Authentication
+
 - Bearer token authentication
 - API key generation in user settings
 - Rate limiting: 100 requests per minute per API key
@@ -970,11 +1055,13 @@ interface CategoriesResource {
 ### 9.2 OAuth Integrations
 
 #### 9.2.1 Supported Providers
+
 - **Google:** OAuth 2.0 with profile and email scopes
 - **GitHub:** OAuth 2.0 with user:email scope
 - **Microsoft:** OAuth 2.0 with openid and email scopes
 
 #### 9.2.2 OAuth Flow
+
 ```
 User clicks "Sign in with Google" →
 Redirect to provider authorization →
@@ -990,6 +1077,7 @@ Redirect to dashboard
 ### 9.3 Import/Export Formats
 
 #### 9.3.1 Evernote Import (.enex)
+
 - Parse XML structure
 - Extract notes with metadata
 - Convert HTML to editor format
@@ -998,12 +1086,14 @@ Redirect to dashboard
 - Maintain created/modified dates
 
 #### 9.3.2 Markdown Import
+
 - Parse frontmatter for metadata
 - Convert Markdown to editor format
 - Support for inline images and links
 - Bulk import from directory structure
 
 #### 9.3.3 Export Formats
+
 - **Markdown:** Clean format with frontmatter
 - **PDF:** Formatted with fonts and images
 - **HTML:** Standalone files with embedded assets
@@ -1017,6 +1107,7 @@ Redirect to dashboard
 ### 10.1 Licensing
 
 #### 10.1.1 License Choice
+
 - **Primary License:** MIT License
 - **Rationale:**
   - Maximum permissiveness for community adoption
@@ -1025,6 +1116,7 @@ Redirect to dashboard
   - Simple and well-understood terms
 
 #### 10.1.2 License File
+
 ```markdown
 MIT License
 
@@ -1043,6 +1135,7 @@ furnished to do so, subject to the following conditions:
 ### 10.2 Community Features
 
 #### 10.2.1 Plugin System
+
 - **Architecture:**
   - Plugin API with lifecycle hooks
   - Sandboxed plugin execution
@@ -1061,6 +1154,7 @@ furnished to do so, subject to the following conditions:
   - Community voting and ratings
 
 #### 10.2.2 Theme Marketplace
+
 - **Theme Structure:**
   - Tailwind CSS configuration overrides
   - Custom CSS variables
@@ -1074,6 +1168,7 @@ furnished to do so, subject to the following conditions:
   - Versioning and update mechanism
 
 #### 10.2.3 Template Library
+
 - **Template Categories:**
   - Daily journal prompts
   - Project documentation templates
@@ -1087,6 +1182,7 @@ furnished to do so, subject to the following conditions:
   - Featured templates showcase
 
 #### 10.2.4 Community Forums
+
 - **Platform:** Discourse or GitHub Discussions
 - **Categories:**
   - General discussion
@@ -1099,6 +1195,7 @@ furnished to do so, subject to the following conditions:
 ### 10.3 Documentation Strategy
 
 #### 10.3.1 User Documentation
+
 - **Getting Started Guide:**
   - Installation instructions (Docker, cloud, self-hosted)
   - First-time setup wizard walkthrough
@@ -1114,6 +1211,7 @@ furnished to do so, subject to the following conditions:
 - **Hosting:** docs.openjournal.org with Docusaurus or GitBook
 
 #### 10.3.2 Developer Documentation
+
 - **Setup Guide:**
   - Prerequisites and environment setup
   - Local development with Docker
@@ -1133,6 +1231,7 @@ furnished to do so, subject to the following conditions:
   - Example plugins
 
 #### 10.3.3 API Documentation
+
 - **OpenAPI Specification:**
   - Auto-generated from route definitions
   - Interactive API explorer (Swagger UI)
@@ -1146,6 +1245,7 @@ furnished to do so, subject to the following conditions:
   - Rate limiting and best practices
 
 #### 10.3.4 Contribution Guidelines
+
 - **CONTRIBUTING.md:**
   - Code of conduct
   - How to report bugs
@@ -1156,7 +1256,7 @@ furnished to do so, subject to the following conditions:
   - Documentation requirements
 
 - **Development Workflow:**
-  - Git branching strategy (main, develop, feature/*)
+  - Git branching strategy (main, develop, feature/\*)
   - Commit message conventions (Conventional Commits)
   - CI/CD pipeline (automated tests, linting)
   - Release process and versioning
@@ -1164,11 +1264,13 @@ furnished to do so, subject to the following conditions:
 ### 10.4 Governance
 
 #### 10.4.1 Project Structure
+
 - **Core Maintainers:** Trusted contributors with merge access
 - **Triage Team:** Issue management and community support
 - **Community Council:** Elected members representing users
 
 #### 10.4.2 Decision Making
+
 - **RFCs (Request for Comments):** Major feature proposals
 - **Community Voting:** Feature prioritization
 - **Transparent Roadmap:** Public project board on GitHub
@@ -1180,9 +1282,11 @@ furnished to do so, subject to the following conditions:
 ### 11.1 Development Phases
 
 #### 11.1.1 Phase 0: Foundation (Weeks 1-2)
+
 **Goal:** Project setup and core infrastructure
 
 **Deliverables:**
+
 - [ ] Repository initialization with README and LICENSE
 - [ ] Next.js 14 project scaffolding
 - [ ] TypeScript, ESLint, Prettier configuration
@@ -1193,14 +1297,17 @@ furnished to do so, subject to the following conditions:
 - [ ] Documentation site structure
 
 **Critical Dependencies:**
+
 - Development environment standardization
 - Database schema finalization
 - Design system implementation
 
 #### 11.1.2 Phase 1: Core Features (Weeks 3-6)
+
 **Goal:** Essential journaling functionality
 
 **Deliverables:**
+
 - [ ] User authentication (email/password)
 - [ ] Entry CRUD operations
 - [ ] Rich text editor integration and configuration
@@ -1212,14 +1319,17 @@ furnished to do so, subject to the following conditions:
 - [ ] Basic search (full-text)
 
 **Critical Path:**
+
 - Editor selection and implementation
 - Database performance optimization
 - Authentication security hardening
 
 #### 11.1.3 Phase 2: Organization & Search (Weeks 7-9)
+
 **Goal:** Advanced organization and discovery
 
 **Deliverables:**
+
 - [ ] Unlimited category nesting
 - [ ] Multiple categories per entry
 - [ ] Advanced search with filters
@@ -1231,14 +1341,17 @@ furnished to do so, subject to the following conditions:
 - [ ] Restore previous versions
 
 **Critical Path:**
+
 - Search performance tuning
 - Version storage optimization
 - Category tree performance
 
 #### 11.1.4 Phase 3: Collaboration (Weeks 10-12)
+
 **Goal:** Workspace and sharing features
 
 **Deliverables:**
+
 - [ ] Workspace management
 - [ ] Personal vs. business workspace separation
 - [ ] Entry sharing with permissions (view, comment)
@@ -1250,14 +1363,17 @@ furnished to do so, subject to the following conditions:
 - [ ] Two-factor authentication (TOTP)
 
 **Critical Path:**
+
 - Permission system security
 - Notification delivery reliability
 - OAuth provider integration
 
 #### 11.1.5 Phase 4: Files & Security (Weeks 13-15)
+
 **Goal:** File management and security hardening
 
 **Deliverables:**
+
 - [ ] File upload functionality (images, documents, audio, video, spreadsheets)
 - [ ] Encrypted file storage in PostgreSQL
 - [ ] File preview generation
@@ -1269,14 +1385,17 @@ furnished to do so, subject to the following conditions:
 - [ ] GDPR compliance features (data export, account deletion)
 
 **Critical Path:**
+
 - Encryption key management
 - File storage performance
 - Security audit completion
 
 #### 11.1.6 Phase 5: Import/Export (Weeks 16-18)
+
 **Goal:** Data portability
 
 **Deliverables:**
+
 - [ ] Evernote (.enex) import
 - [ ] Markdown file import
 - [ ] HTML file import
@@ -1290,14 +1409,17 @@ furnished to do so, subject to the following conditions:
 - [ ] Bulk operations handling
 
 **Critical Path:**
+
 - Format parser reliability
 - Large file handling
 - Data integrity validation
 
 #### 11.1.7 Phase 6: MCP Integration (Weeks 19-21)
+
 **Goal:** AI assistant integration
 
 **Deliverables:**
+
 - [ ] MCP server implementation with HTTP transport
 - [ ] MCP authentication and authorization
 - [ ] Entry CRUD tools for MCP
@@ -1309,14 +1431,17 @@ furnished to do so, subject to the following conditions:
 - [ ] Example AI assistant integrations
 
 **Critical Path:**
+
 - MCP specification compliance
 - Authentication security
 - Tool performance optimization
 
 #### 11.1.8 Phase 7: Polish & Performance (Weeks 22-24)
+
 **Goal:** Production readiness
 
 **Deliverables:**
+
 - [ ] Performance optimization (page load <2s, search <500ms)
 - [ ] Mobile responsive refinement
 - [ ] Dark mode implementation and testing
@@ -1329,14 +1454,17 @@ furnished to do so, subject to the following conditions:
 - [ ] Backup and restore procedures
 
 **Critical Path:**
+
 - Performance benchmarking
 - Accessibility compliance
 - Documentation completeness
 
 #### 11.1.9 Phase 8: Community & Extensibility (Weeks 25-28)
+
 **Goal:** Open source community preparation
 
 **Deliverables:**
+
 - [ ] Plugin system architecture
 - [ ] Plugin API documentation
 - [ ] Example plugins (2-3 reference implementations)
@@ -1349,6 +1477,7 @@ furnished to do so, subject to the following conditions:
 - [ ] Public roadmap publication
 
 **Critical Path:**
+
 - Plugin security model
 - Community platform selection
 - Marketing and launch preparation
@@ -1356,7 +1485,9 @@ furnished to do so, subject to the following conditions:
 ### 11.2 MVP Definition
 
 #### 11.2.1 MVP Scope (Phases 1-4)
+
 **Essential Features:**
+
 - User authentication (email/password, OAuth)
 - Entry creation and editing with rich text editor
 - Category organization with unlimited nesting
@@ -1371,6 +1502,7 @@ furnished to do so, subject to the following conditions:
 **MVP Timeline:** 15 weeks (approximately 4 months)
 
 **Post-MVP Features (Phases 5-8):**
+
 - Import/export capabilities
 - MCP server integration
 - Plugin and theme systems
@@ -1380,17 +1512,20 @@ furnished to do so, subject to the following conditions:
 ### 11.3 Resource Requirements
 
 #### 11.3.1 Development Team (Ideal)
+
 - **1 Full-Stack Engineer (Lead):** Architecture, backend, DevOps
 - **1 Frontend Engineer:** UI/UX, React/Next.js, responsive design
 - **1 Part-Time Designer:** UI design, branding, documentation graphics
 
 **Solo Developer Alternative:**
+
 - Allocate 30-40 hours per week
 - Follow phased approach strictly
 - Use AI assistance (Claude, GitHub Copilot) for productivity
 - Prioritize MVP scope, defer community features
 
 #### 11.3.2 Infrastructure Costs (Self-Hosted)
+
 - **Development:**
   - Local development: $0 (Docker)
   - CI/CD: GitHub Actions free tier
@@ -1403,6 +1538,7 @@ furnished to do so, subject to the following conditions:
 **Total Monthly:** $15-30 for small-scale deployment
 
 #### 11.3.3 Tools & Services
+
 - **Free/Open Source:**
   - VS Code / Cursor IDE
   - PostgreSQL
@@ -1417,22 +1553,25 @@ furnished to do so, subject to the following conditions:
 ### 11.4 Risk Management
 
 #### 11.4.1 Technical Risks
-| Risk | Probability | Impact | Mitigation |
-|------|------------|--------|------------|
-| Editor integration complexity | Medium | High | Evaluate multiple editors early, have fallback options |
-| Search performance at scale | Medium | High | Implement PostgreSQL full-text search with proper indexes early |
-| Encryption performance overhead | Low | Medium | Use hardware acceleration, optimize storage |
-| MCP specification changes | Low | Medium | Follow MCP community closely, design for flexibility |
+
+| Risk                            | Probability | Impact | Mitigation                                                      |
+| ------------------------------- | ----------- | ------ | --------------------------------------------------------------- |
+| Editor integration complexity   | Medium      | High   | Evaluate multiple editors early, have fallback options          |
+| Search performance at scale     | Medium      | High   | Implement PostgreSQL full-text search with proper indexes early |
+| Encryption performance overhead | Low         | Medium | Use hardware acceleration, optimize storage                     |
+| MCP specification changes       | Low         | Medium | Follow MCP community closely, design for flexibility            |
 
 #### 11.4.2 Project Risks
-| Risk | Probability | Impact | Mitigation |
-|------|------------|--------|------------|
-| Scope creep | High | High | Strict MVP definition, defer non-essential features |
-| Solo developer burnout | Medium | High | Realistic timeline, regular breaks, community engagement |
-| Community adoption challenges | Medium | Medium | Early marketing, clear documentation, responsive support |
-| Security vulnerabilities | Medium | High | Regular audits, dependency updates, security-first design |
+
+| Risk                          | Probability | Impact | Mitigation                                                |
+| ----------------------------- | ----------- | ------ | --------------------------------------------------------- |
+| Scope creep                   | High        | High   | Strict MVP definition, defer non-essential features       |
+| Solo developer burnout        | Medium      | High   | Realistic timeline, regular breaks, community engagement  |
+| Community adoption challenges | Medium      | Medium | Early marketing, clear documentation, responsive support  |
+| Security vulnerabilities      | Medium      | High   | Regular audits, dependency updates, security-first design |
 
 #### 11.4.3 Mitigation Strategies
+
 - **Weekly Progress Reviews:** Assess scope adherence, adjust timeline
 - **Security Audits:** Automated scanning + manual review at each phase
 - **Performance Benchmarks:** Define and test at each phase
@@ -1446,6 +1585,7 @@ furnished to do so, subject to the following conditions:
 ### 12.1 MVP Launch Criteria
 
 #### 12.1.1 Functional Completeness
+
 - [ ] All Phase 1-4 features implemented and tested
 - [ ] Zero critical bugs in production
 - [ ] <5 high-priority bugs outstanding
@@ -1453,12 +1593,14 @@ furnished to do so, subject to the following conditions:
 - [ ] Security audit passed
 
 #### 12.1.2 Performance Benchmarks
+
 - [ ] Page load time <2 seconds (P95)
 - [ ] Search response time <500ms (P95)
 - [ ] Entry save time <1 second (P95)
 - [ ] Time to first byte <200ms
 
 #### 12.1.3 Quality Gates
+
 - [ ] Test coverage >80%
 - [ ] No ESLint errors
 - [ ] Accessibility audit passed (WCAG 2.1 AA)
@@ -1466,6 +1608,7 @@ furnished to do so, subject to the following conditions:
 - [ ] Cross-browser testing completed (Chrome, Firefox, Safari, Edge)
 
 #### 12.1.4 Documentation Completeness
+
 - [ ] User guide published
 - [ ] Installation guide published
 - [ ] API documentation published
@@ -1475,24 +1618,28 @@ furnished to do so, subject to the following conditions:
 ### 12.2 Post-Launch Metrics (3 Months)
 
 #### 12.2.1 Adoption Metrics
+
 - **Target:** 100+ active users (self-hosted + cloud)
 - **Active User Definition:** Created ≥1 entry in last 30 days
 - **GitHub Stars:** 500+ (community interest indicator)
 - **Docker Pulls:** 1,000+ (deployment indicator)
 
 #### 12.2.2 Engagement Metrics
+
 - **Entries Created:** 5,000+ total entries
 - **Average Entries per Active User:** 10+
 - **Session Duration:** >5 minutes average
 - **Retention Rate (30-day):** >50%
 
 #### 12.2.3 Community Metrics
+
 - **GitHub Contributors:** 10+ contributors
 - **Pull Requests:** 20+ merged PRs
 - **Issues Resolved:** >80% of reported issues resolved
 - **Forum Activity:** 50+ forum posts
 
 #### 12.2.4 Technical Metrics
+
 - **Uptime:** >99% for hosted instances
 - **Error Rate:** <1% of requests
 - **Search Success Rate:** >95% (queries returning results)
@@ -1501,6 +1648,7 @@ furnished to do so, subject to the following conditions:
 ### 12.3 Long-Term Vision (1 Year)
 
 #### 12.3.1 Product Maturity
+
 - Full feature parity with Evernote (core features)
 - 20+ community plugins available
 - 10+ community themes available
@@ -1508,6 +1656,7 @@ furnished to do so, subject to the following conditions:
 - Multi-language support (5+ languages)
 
 #### 12.3.2 Community Growth
+
 - 5,000+ active users
 - 50+ contributors
 - 100+ GitHub stars per month
@@ -1515,6 +1664,7 @@ furnished to do so, subject to the following conditions:
 - Active community forum with daily activity
 
 #### 12.3.3 Technical Excellence
+
 - Performance optimizations completed
 - Advanced search features (semantic search)
 - Offline-first Progressive Web App
@@ -1528,6 +1678,7 @@ furnished to do so, subject to the following conditions:
 ### 13.1 GDPR Compliance
 
 #### 13.1.1 Data Subject Rights
+
 - **Right to Access:** Users can export all their data (JSON format)
 - **Right to Rectification:** Users can edit their profile and entries
 - **Right to Erasure:** Account deletion with data purging option
@@ -1535,6 +1686,7 @@ furnished to do so, subject to the following conditions:
 - **Right to Object:** Opt-out of analytics and email notifications
 
 #### 13.1.2 Data Processing
+
 - **Lawful Basis:** User consent via terms acceptance
 - **Data Minimization:** Only collect essential user data
 - **Purpose Limitation:** Data used only for stated purposes
@@ -1542,6 +1694,7 @@ furnished to do so, subject to the following conditions:
 - **Integrity and Confidentiality:** Encryption and access controls
 
 #### 13.1.3 Transparency
+
 - **Privacy Policy:** Clear explanation of data collection and usage
 - **Terms of Service:** User rights and responsibilities
 - **Consent Management:** Explicit consent for optional features
@@ -1550,6 +1703,7 @@ furnished to do so, subject to the following conditions:
 ### 13.2 Security Standards
 
 #### 13.2.1 OWASP Top 10 Protection
+
 - **Injection:** Parameterized queries, input validation
 - **Broken Authentication:** Secure session management, 2FA
 - **Sensitive Data Exposure:** Encryption at rest and in transit
@@ -1562,6 +1716,7 @@ furnished to do so, subject to the following conditions:
 - **Insufficient Logging & Monitoring:** Comprehensive audit logs
 
 #### 13.2.2 Certifications (Future)
+
 - SOC 2 Type II (for hosted service)
 - ISO 27001 (information security management)
 - HIPAA compliance (for healthcare use cases)
@@ -1569,12 +1724,14 @@ furnished to do so, subject to the following conditions:
 ### 13.3 Licensing Compliance
 
 #### 13.3.1 Dependency Licenses
+
 - **Audit:** Regular review of dependency licenses
 - **Compatible Licenses:** MIT, Apache 2.0, BSD-3-Clause
 - **Avoided Licenses:** GPL (due to copyleft), proprietary licenses
 - **License File:** Comprehensive LICENSES.md with all dependencies
 
 #### 13.3.2 Contribution Licensing
+
 - **Contributor License Agreement (CLA):** Optional, for large contributions
 - **DCO (Developer Certificate of Origin):** Signed-off commits required
 - **Copyright:** "OpenJournal Contributors" as collective copyright holder
@@ -1638,17 +1795,20 @@ furnished to do so, subject to the following conditions:
 ### 15.1 References
 
 #### 15.1.1 Design References
+
 - **Solid Tailwind:** https://solid-tailwind.preview.uideck.com/
 - **shadcn/ui:** https://ui.shadcn.com/
 - **Tailwind CSS:** https://tailwindcss.com/
 
 #### 15.1.2 Technical Documentation
+
 - **Next.js 14:** https://nextjs.org/docs
 - **PostgreSQL:** https://www.postgresql.org/docs/
 - **Prisma ORM:** https://www.prisma.io/docs
 - **MCP Specification:** https://modelcontextprotocol.io/
 
 #### 15.1.3 Security Standards
+
 - **OWASP Top 10:** https://owasp.org/www-project-top-ten/
 - **WCAG 2.1:** https://www.w3.org/WAI/WCAG21/quickref/
 - **GDPR:** https://gdpr.eu/
@@ -1656,57 +1816,69 @@ furnished to do so, subject to the following conditions:
 ### 15.2 Competitive Analysis
 
 #### 15.2.1 Evernote
+
 **Strengths:**
+
 - Mature, polished UI
 - Strong mobile apps
 - Web clipper functionality
 - Large user base
 
 **Weaknesses:**
+
 - Limited free tier
 - Privacy concerns (cloud-hosted)
 - Vendor lock-in
 - Limited customization
 
 **OpenJournal Advantages:**
+
 - Self-hosted privacy
 - Open source transparency
 - No subscription required
 - End-to-end encryption
 
 #### 15.2.2 TrilliumNext
+
 **Strengths:**
+
 - Powerful tree structure
 - Developer-friendly (Markdown, code notes)
 - Self-hosted
 - Advanced features (scripting, relations)
 
 **Weaknesses:**
+
 - Steeper learning curve
 - Less intuitive for casual users
 - Limited mobile experience
 - Complex for simple journaling
 
 **OpenJournal Advantages:**
+
 - Simpler UX for general users
 - Better mobile responsiveness
 - Modern tech stack (Next.js vs older frameworks)
 - AI integration via MCP
 
 #### 15.2.3 Notion
+
 **Strengths:**
+
 - Beautiful UI
 - Collaboration features
 - Database functionality
 - Template marketplace
 
 **Weaknesses:**
+
 - Cloud-only
 - Privacy concerns
 - Performance issues with large workspaces
 - Complex for simple needs
 
 **OpenJournal Advantages:**
+
 - Self-hosted control
 - Focused journaling experience (not all-in-one)
 - Better privacy guarantees
@@ -1715,6 +1887,7 @@ furnished to do so, subject to the following conditions:
 ### 15.3 Future Considerations
 
 #### 15.3.1 Features for Post-MVP
+
 - Real-time collaborative editing
 - Native mobile apps (React Native)
 - Advanced analytics and insights dashboard
@@ -1727,6 +1900,7 @@ furnished to do so, subject to the following conditions:
 - Zapier/IFTTT integrations
 
 #### 15.3.2 Scalability Enhancements
+
 - Read replicas for database scaling
 - CDN for static assets
 - Redis caching layer
@@ -1736,6 +1910,7 @@ furnished to do so, subject to the following conditions:
 - Horizontal scaling with load balancing
 
 #### 15.3.3 Advanced Security
+
 - Hardware security key support (WebAuthn)
 - Biometric authentication (mobile)
 - Zero-knowledge architecture exploration
@@ -1746,6 +1921,7 @@ furnished to do so, subject to the following conditions:
 ### 15.4 Changelog
 
 **Version 1.0 - 2025-11-14**
+
 - Initial PRD creation based on comprehensive questionnaire
 - Defined MVP scope (Phases 1-4)
 - Established technical architecture with Next.js 14 and PostgreSQL
@@ -1754,6 +1930,7 @@ furnished to do so, subject to the following conditions:
 - Defined success metrics and launch criteria
 
 **Future Versions:**
+
 - Revisions based on stakeholder feedback
 - Updates from development discoveries
 - Refinements from user testing
@@ -1764,16 +1941,17 @@ furnished to do so, subject to the following conditions:
 
 ### 16.1 Document Review
 
-| Reviewer | Role | Status | Date | Comments |
-|----------|------|--------|------|----------|
-| [Name] | Product Owner | Pending | TBD | |
-| [Name] | Technical Lead | Pending | TBD | |
-| [Name] | Security Reviewer | Pending | TBD | |
-| [Name] | UX/UI Designer | Pending | TBD | |
+| Reviewer | Role              | Status  | Date | Comments |
+| -------- | ----------------- | ------- | ---- | -------- |
+| [Name]   | Product Owner     | Pending | TBD  |          |
+| [Name]   | Technical Lead    | Pending | TBD  |          |
+| [Name]   | Security Reviewer | Pending | TBD  |          |
+| [Name]   | UX/UI Designer    | Pending | TBD  |          |
 
 ### 16.2 Approval
 
 **This PRD will be considered approved when:**
+
 - [ ] All reviewers have signed off
 - [ ] Technical feasibility confirmed
 - [ ] Resource availability verified
@@ -1781,15 +1959,18 @@ furnished to do so, subject to the following conditions:
 
 **Approved by:**
 
-_____________________________
+---
+
 Product Owner | Date
 
-_____________________________
+---
+
 Technical Lead | Date
 
 ---
 
 **Document Control**
+
 - **Version:** 1.0
 - **Last Updated:** 2025-11-14
 - **Next Review:** Upon MVP completion or major scope change
@@ -1798,4 +1979,4 @@ Technical Lead | Date
 
 ---
 
-*This Product Requirements Document serves as the foundation for the OpenJournal project. It is a living document that will evolve with community feedback and development learnings.*
+_This Product Requirements Document serves as the foundation for the OpenJournal project. It is a living document that will evolve with community feedback and development learnings._
