@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useDebounce } from "@/hooks/useDebounce";
 
 interface Entry {
   id: string;
@@ -35,7 +36,10 @@ export default function EntriesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showPublishedOnly, setShowPublishedOnly] = useState<boolean | null>(null);
 
-  const fetchEntries = async () => {
+  // Debounce search query to reduce API calls
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
+  const fetchEntries = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
@@ -43,8 +47,8 @@ export default function EntriesPage() {
         limit: "10",
       });
 
-      if (searchQuery) {
-        params.append("search", searchQuery);
+      if (debouncedSearchQuery) {
+        params.append("search", debouncedSearchQuery);
       }
 
       if (showPublishedOnly !== null) {
@@ -65,16 +69,16 @@ export default function EntriesPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, debouncedSearchQuery, showPublishedOnly]);
 
   useEffect(() => {
     fetchEntries();
-  }, [currentPage, searchQuery, showPublishedOnly]);
+  }, [fetchEntries]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setCurrentPage(1);
-    fetchEntries();
+    // No need to call fetchEntries - useEffect will trigger from debouncedSearchQuery
   };
 
   const handleDelete = async (id: string) => {
@@ -112,62 +116,62 @@ export default function EntriesPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">My Journal Entries</h1>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 max-w-6xl">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold dark:text-foreground">My Journal Entries</h1>
         <Link
           href="/entries/new"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition"
+          className="w-full sm:w-auto text-center bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md transition-colors"
         >
           New Entry
         </Link>
       </div>
 
       {/* Search and Filter Bar */}
-      <div className="mb-6 space-y-4">
-        <form onSubmit={handleSearch} className="flex gap-2">
+      <div className="mb-6 space-y-3 sm:space-y-4">
+        <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2">
           <input
             type="text"
             placeholder="Search entries..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-2 border border-input bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
           />
           <button
             type="submit"
-            className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md transition"
+            className="bg-secondary hover:bg-secondary/80 text-secondary-foreground px-4 py-2 rounded-md transition-colors whitespace-nowrap"
           >
             Search
           </button>
         </form>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setShowPublishedOnly(null)}
-            className={`px-4 py-2 rounded-md transition ${
+            className={`flex-1 sm:flex-initial px-4 py-2 rounded-md transition-colors ${
               showPublishedOnly === null
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
             }`}
           >
             All
           </button>
           <button
             onClick={() => setShowPublishedOnly(true)}
-            className={`px-4 py-2 rounded-md transition ${
+            className={`flex-1 sm:flex-initial px-4 py-2 rounded-md transition-colors ${
               showPublishedOnly === true
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
             }`}
           >
             Published
           </button>
           <button
             onClick={() => setShowPublishedOnly(false)}
-            className={`px-4 py-2 rounded-md transition ${
+            className={`flex-1 sm:flex-initial px-4 py-2 rounded-md transition-colors ${
               showPublishedOnly === false
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
             }`}
           >
             Drafts
@@ -177,67 +181,69 @@ export default function EntriesPage() {
 
       {/* Entries List */}
       {loading ? (
-        <div className="text-center py-12">Loading entries...</div>
+        <div className="text-center py-12 text-muted-foreground">
+          <div className="animate-pulse">Loading entries...</div>
+        </div>
       ) : entries.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-muted-foreground">
           <p className="text-lg mb-4">No entries found</p>
           <Link
             href="/entries/new"
-            className="text-blue-600 hover:text-blue-700 underline"
+            className="text-primary hover:text-primary/80 underline"
           >
             Create your first entry
           </Link>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {entries.map((entry) => (
             <div
               key={entry.id}
-              className="border rounded-lg p-6 hover:shadow-md transition"
+              className="border border-border rounded-lg p-4 sm:p-6 hover:shadow-lg dark:hover:shadow-primary/10 transition-shadow bg-card"
             >
-              <div className="flex justify-between items-start mb-3">
-                <div className="flex-1">
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-3">
+                <div className="flex-1 min-w-0 w-full">
                   <Link
                     href={`/entries/${entry.id}`}
-                    className="text-xl font-semibold hover:text-blue-600 transition"
+                    className="text-lg sm:text-xl font-semibold hover:text-primary transition-colors block truncate"
                   >
                     {entry.title}
                   </Link>
-                  {entry.template && (
-                    <span className="ml-3 text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                      {entry.template.name}
-                    </span>
-                  )}
-                  {!entry.published && (
-                    <span className="ml-2 text-sm text-yellow-600 bg-yellow-50 px-2 py-1 rounded">
-                      Draft
-                    </span>
-                  )}
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {entry.template && (
+                      <span className="text-xs sm:text-sm text-muted-foreground bg-muted px-2 py-1 rounded">
+                        {entry.template.name}
+                      </span>
+                    )}
+                    {!entry.published && (
+                      <span className="text-xs sm:text-sm text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950 px-2 py-1 rounded">
+                        Draft
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full sm:w-auto">
                   <Link
                     href={`/entries/${entry.id}/edit`}
-                    className="text-blue-600 hover:text-blue-700 px-3 py-1 rounded-md border border-blue-600 hover:bg-blue-50 transition"
+                    className="flex-1 sm:flex-initial text-center text-primary hover:text-primary/80 px-3 py-1.5 sm:py-1 rounded-md border border-primary hover:bg-primary/10 transition-colors text-sm"
                   >
                     Edit
                   </Link>
                   <button
                     onClick={() => handleDelete(entry.id)}
-                    className="text-red-600 hover:text-red-700 px-3 py-1 rounded-md border border-red-600 hover:bg-red-50 transition"
+                    className="flex-1 sm:flex-initial text-destructive hover:text-destructive/80 px-3 py-1.5 sm:py-1 rounded-md border border-destructive hover:bg-destructive/10 transition-colors text-sm"
                   >
                     Delete
                   </button>
                 </div>
               </div>
 
-              <p className="text-gray-600 mb-3">{getExcerpt(entry.content)}</p>
+              <p className="text-muted-foreground mb-3 line-clamp-2 sm:line-clamp-3">{getExcerpt(entry.content)}</p>
 
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <div className="space-x-4">
-                  <span>{entry.wordCount} words</span>
-                  <span>{entry.charCount} characters</span>
-                  <span>Updated {formatDate(entry.updatedAt)}</span>
-                </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm text-muted-foreground">
+                <span>{entry.wordCount} words</span>
+                <span className="hidden sm:inline">{entry.charCount} characters</span>
+                <span className="truncate">Updated {formatDate(entry.updatedAt)}</span>
               </div>
             </div>
           ))}
@@ -246,21 +252,21 @@ export default function EntriesPage() {
 
       {/* Pagination */}
       {pagination && pagination.pages > 1 && (
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mt-6 sm:mt-8">
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="px-4 py-2 rounded-md border disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+            className="w-full sm:w-auto px-4 py-2 rounded-md border border-border bg-background disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent transition-colors"
           >
             Previous
           </button>
-          <span className="px-4 py-2">
+          <span className="px-4 py-2 text-sm sm:text-base text-muted-foreground">
             Page {pagination.page} of {pagination.pages}
           </span>
           <button
             onClick={() => setCurrentPage((p) => Math.min(pagination.pages, p + 1))}
             disabled={currentPage === pagination.pages}
-            className="px-4 py-2 rounded-md border disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+            className="w-full sm:w-auto px-4 py-2 rounded-md border border-border bg-background disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent transition-colors"
           >
             Next
           </button>
