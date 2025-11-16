@@ -2,7 +2,7 @@
   "master": {
     "tasks": [
       {
-        "id": 1,
+        "id": "1",
         "title": "Project Setup and Infrastructure",
         "description": "Initialize the project repository and set up core infrastructure components.",
         "details": "1. Initialize a Git repository and set up a README with project details.\n2. Configure Next.js 14 with TypeScript, ESLint, and Prettier.\n3. Set up Tailwind CSS with shadcn/ui components.\n4. Create a Docker setup for PostgreSQL and configure Prisma ORM.\n5. Establish a CI/CD pipeline using GitHub Actions.",
@@ -14,13 +14,15 @@
         "updatedAt": "2025-11-14T18:10:43.246Z"
       },
       {
-        "id": 2,
+        "id": "2",
         "title": "User Authentication System",
         "description": "Implement user authentication using email/password and OAuth providers.",
         "details": "1. Use NextAuth.js for authentication.\n2. Implement email/password login and registration.\n3. Integrate OAuth with Google, GitHub, and Microsoft.\n4. Set up two-factor authentication using TOTP.\n5. Implement password reset and email verification flows.",
         "testStrategy": "Write unit tests for authentication flows. Perform integration tests for OAuth providers and verify two-factor authentication functionality.",
         "priority": "high",
-        "dependencies": ["1"],
+        "dependencies": [
+          "1"
+        ],
         "status": "done",
         "subtasks": [
           {
@@ -37,7 +39,9 @@
             "id": 2,
             "title": "Implement Email/Password Login and Registration",
             "description": "Develop the functionality for users to register and log in using email and password.",
-            "dependencies": [1],
+            "dependencies": [
+              1
+            ],
             "details": "Create API routes for registration and login. Store user credentials securely in the database.",
             "status": "pending",
             "testStrategy": "Write unit tests for registration and login endpoints.",
@@ -47,7 +51,9 @@
             "id": 3,
             "title": "Integrate OAuth with Google, GitHub, and Microsoft",
             "description": "Add OAuth authentication using Google, GitHub, and Microsoft providers.",
-            "dependencies": [1],
+            "dependencies": [
+              1
+            ],
             "details": "Configure OAuth providers in NextAuth.js. Ensure proper callback handling and user session management.",
             "status": "pending",
             "testStrategy": "Perform integration tests for each OAuth provider.",
@@ -57,7 +63,9 @@
             "id": 4,
             "title": "Set Up Two-Factor Authentication Using TOTP",
             "description": "Implement two-factor authentication using Time-based One-Time Password (TOTP).",
-            "dependencies": [2],
+            "dependencies": [
+              2
+            ],
             "details": "Use a library like speakeasy to generate TOTP codes. Allow users to enable/disable two-factor authentication.",
             "status": "pending",
             "testStrategy": "Verify TOTP setup and login flow with two-factor authentication.",
@@ -67,7 +75,9 @@
             "id": 5,
             "title": "Implement Password Reset and Email Verification Flows",
             "description": "Develop password reset and email verification functionalities.",
-            "dependencies": [2],
+            "dependencies": [
+              2
+            ],
             "details": "Create API routes for password reset and email verification. Send emails using a service like SendGrid.",
             "status": "pending",
             "testStrategy": "Test email sending and link handling for password reset and verification.",
@@ -77,14 +87,16 @@
         "updatedAt": "2025-11-14T21:30:39.931Z"
       },
       {
-        "id": 3,
+        "id": "3",
         "title": "Rich Text Editor Integration",
         "description": "Integrate a WYSIWYG editor with support for rich text formatting and markdown shortcuts.",
         "details": "1. Evaluate and select a suitable editor (TipTap, Quill, ProseMirror, or Draft.js).\n2. Implement rich text formatting features (bold, italic, lists, etc.).\n3. Add support for code blocks with syntax highlighting.\n4. Enable markdown shortcuts for power users.\n5. Implement auto-save functionality.",
         "testStrategy": "Test editor functionality across different browsers. Verify markdown shortcuts and auto-save feature.",
         "priority": "medium",
-        "dependencies": ["1"],
-        "status": "in-progress",
+        "dependencies": [
+          "1"
+        ],
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -93,133 +105,230 @@
             "dependencies": [],
             "details": "Evaluate TipTap, Quill, ProseMirror, and Draft.js based on project requirements and compatibility.",
             "status": "pending",
-            "testStrategy": "Ensure selected editor meets all functional requirements."
+            "testStrategy": "Ensure selected editor meets all functional requirements.",
+            "parentId": "undefined"
           },
           {
             "id": 2,
             "title": "Implement Rich Text Formatting Features",
             "description": "Integrate the selected editor and implement basic rich text formatting.",
-            "dependencies": [1],
+            "dependencies": [
+              1
+            ],
             "details": "Add support for bold, italic, underline, and list formatting using the editor's API.",
             "status": "pending",
-            "testStrategy": "Verify formatting features work as expected across browsers."
+            "testStrategy": "Verify formatting features work as expected across browsers.",
+            "parentId": "undefined"
           },
           {
             "id": 3,
             "title": "Add Code Block Support with Syntax Highlighting",
             "description": "Enable code block insertion with syntax highlighting in the editor.",
-            "dependencies": [2],
+            "dependencies": [
+              2
+            ],
             "details": "Use a library like Prism.js to add syntax highlighting to code blocks within the editor.",
             "status": "pending",
-            "testStrategy": "Test code block rendering and syntax highlighting for multiple languages."
+            "testStrategy": "Test code block rendering and syntax highlighting for multiple languages.",
+            "parentId": "undefined"
           },
           {
             "id": 4,
             "title": "Enable Markdown Shortcuts",
             "description": "Implement markdown shortcuts for power users in the editor.",
-            "dependencies": [2],
+            "dependencies": [
+              2
+            ],
             "details": "Configure the editor to recognize markdown syntax and convert it to rich text automatically.",
             "status": "pending",
-            "testStrategy": "Test markdown shortcuts for accuracy and ease of use."
+            "testStrategy": "Test markdown shortcuts for accuracy and ease of use.",
+            "parentId": "undefined"
           },
           {
             "id": 5,
             "title": "Implement Auto-Save Functionality",
             "description": "Add auto-save feature to preserve user content periodically.",
-            "dependencies": [2],
+            "dependencies": [
+              2
+            ],
             "details": "Use local storage or a backend service to save editor content at regular intervals.",
             "status": "pending",
-            "testStrategy": "Verify auto-save triggers correctly and content is recoverable after a session ends."
+            "testStrategy": "Verify auto-save triggers correctly and content is recoverable after a session ends.",
+            "parentId": "undefined"
           }
         ],
-        "updatedAt": "2025-11-16T15:10:39.352Z"
+        "updatedAt": "2025-11-16T15:17:18.228Z"
       },
       {
-        "id": 4,
+        "id": "4",
         "title": "Entry Management System",
         "description": "Develop CRUD operations for journal entries with template support.",
         "details": "1. Implement API routes for creating, reading, updating, and deleting entries.\n2. Add template support for new entries.\n3. Implement entry metadata tracking (created, modified, author, word count).\n4. Ensure entries are encrypted in the database.",
         "testStrategy": "Write unit tests for each CRUD operation. Verify data encryption and metadata accuracy.",
         "priority": "high",
-        "dependencies": ["2", "3"],
-        "status": "pending",
-        "subtasks": []
+        "dependencies": [
+          "2",
+          "3"
+        ],
+        "status": "done",
+        "subtasks": [],
+        "updatedAt": "2025-11-16T15:32:19.463Z"
       },
       {
-        "id": 5,
+        "id": "5",
         "title": "Category Management",
         "description": "Implement a system for managing categories with unlimited nesting and drag-and-drop reorganization.",
         "details": "1. Develop API routes for category CRUD operations.\n2. Implement a drag-and-drop interface for category management.\n3. Allow multiple categories per entry and unlimited nesting.\n4. Add category-specific icons and colors.",
         "testStrategy": "Test category creation, deletion, and reorganization. Verify drag-and-drop functionality and UI responsiveness.",
         "priority": "medium",
-        "dependencies": ["4"],
-        "status": "pending",
-        "subtasks": []
+        "dependencies": [
+          "4"
+        ],
+        "status": "done",
+        "subtasks": [],
+        "updatedAt": "2025-11-16T16:04:20.074Z"
       },
       {
-        "id": 6,
+        "id": "6",
         "title": "Search and Discovery",
         "description": "Implement full-text search with advanced filters and fuzzy search capabilities.",
         "details": "1. Set up PostgreSQL full-text search with pg_trgm extension.\n2. Implement search API with filters for date range, category, and author.\n3. Add fuzzy search for typo tolerance and real-time search suggestions.\n4. Implement search history and saved queries.",
         "testStrategy": "Perform search performance tests. Validate search accuracy and filter functionality.",
         "priority": "high",
-        "dependencies": ["4", "5"],
-        "status": "pending",
-        "subtasks": []
+        "dependencies": [
+          "4",
+          "5"
+        ],
+        "status": "done",
+        "subtasks": [],
+        "updatedAt": "2025-11-16T16:10:32.007Z"
       },
       {
-        "id": 7,
+        "id": "7",
         "title": "Version Control and History",
         "description": "Develop a version control system for entries with unlimited version retention and comparison views.",
         "details": "1. Implement automatic version creation on entry save.\n2. Develop a version comparison view with diff visualization.\n3. Allow users to restore previous versions with confirmation.\n4. Track version metadata (timestamp, author, change summary).",
         "testStrategy": "Test version creation and restoration processes. Verify diff visualization accuracy.",
         "priority": "medium",
-        "dependencies": ["4"],
-        "status": "pending",
-        "subtasks": []
+        "dependencies": [
+          "4"
+        ],
+        "status": "done",
+        "subtasks": [],
+        "updatedAt": "2025-11-16T16:16:44.238Z"
       },
       {
-        "id": 8,
+        "id": "8",
         "title": "Workspace and Sharing Features",
         "description": "Implement workspace management and entry sharing with permissions.",
         "details": "1. Develop support for multiple workspaces per user.\n2. Implement personal and business workspace separation.\n3. Create sharing functionality with permission levels (view, comment).\n4. Develop a sharing activity log for compliance.",
         "testStrategy": "Test workspace creation and switching. Verify sharing permissions and activity logging.",
         "priority": "medium",
-        "dependencies": ["5"],
-        "status": "pending",
-        "subtasks": []
+        "dependencies": [
+          "5"
+        ],
+        "status": "done",
+        "subtasks": [],
+        "updatedAt": "2025-11-16T16:20:25.178Z"
       },
       {
-        "id": 9,
+        "id": "9",
         "title": "File and Media Attachments",
         "description": "Enable file and media attachment support with encrypted storage.",
         "details": "1. Implement file upload and embedding for images, documents, audio, and video.\n2. Store files encrypted in PostgreSQL.\n3. Add inline preview for supported file types.\n4. Enforce file size limits configurable per deployment.",
         "testStrategy": "Test file upload and preview functionality. Verify encryption and storage limits.",
         "priority": "medium",
-        "dependencies": ["4"],
-        "status": "pending",
-        "subtasks": []
+        "dependencies": [
+          "4"
+        ],
+        "status": "done",
+        "subtasks": [],
+        "updatedAt": "2025-11-16T16:24:10.995Z"
       },
       {
-        "id": 10,
+        "id": "10",
         "title": "Security and Privacy Enhancements",
         "description": "Implement comprehensive security measures including encryption and audit logging.",
         "details": "1. Ensure data at rest encryption for the database.\n2. Implement HTTPS/TLS for all data in transit.\n3. Develop end-to-end encryption for entry content.\n4. Set up an audit log system for security events and user activity tracking.",
         "testStrategy": "Conduct security audits and penetration tests. Verify encryption and audit log integrity.",
         "priority": "high",
-        "dependencies": ["1", "2", "4"],
-        "status": "pending",
-        "subtasks": []
+        "dependencies": [
+          "1",
+          "2",
+          "4"
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Data at Rest Encryption",
+            "description": "Ensure encryption for data stored in the database.",
+            "dependencies": [],
+            "details": "Use database-level encryption features to secure data at rest. Update configuration files to enable encryption.",
+            "status": "pending",
+            "testStrategy": "Verify encryption by checking database configuration and performing data retrieval tests.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Enable HTTPS/TLS for Data in Transit",
+            "description": "Implement HTTPS/TLS for all data transmitted between clients and servers.",
+            "dependencies": [
+              1
+            ],
+            "details": "Configure the server to use HTTPS by obtaining and installing SSL/TLS certificates. Update server settings to enforce HTTPS connections.",
+            "status": "pending",
+            "testStrategy": "Conduct tests using tools like SSL Labs to verify HTTPS implementation and check for vulnerabilities.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Develop End-to-End Encryption for Entry Content",
+            "description": "Implement encryption for entry content from client to server.",
+            "dependencies": [
+              2
+            ],
+            "details": "Use libraries like CryptoJS to encrypt data on the client side before sending it to the server. Decrypt data on the server side as needed.",
+            "status": "pending",
+            "testStrategy": "Test encryption and decryption processes to ensure data integrity and security.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Set Up Audit Log System",
+            "description": "Implement an audit log system to track security events and user activities.",
+            "dependencies": [
+              3
+            ],
+            "details": "Integrate a logging library to capture and store logs of user actions and security events. Ensure logs are tamper-proof.",
+            "status": "pending",
+            "testStrategy": "Review logs for completeness and accuracy. Simulate security events to verify logging functionality.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Conduct Security Audits and Penetration Tests",
+            "description": "Perform security audits and penetration tests to ensure system security.",
+            "dependencies": [
+              4
+            ],
+            "details": "Engage with security professionals to conduct thorough audits and tests. Address any vulnerabilities found during testing.",
+            "status": "pending",
+            "testStrategy": "Document findings from audits and tests. Implement fixes for identified vulnerabilities.",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2025-11-16T16:00:04.944Z"
       }
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-11-16T15:10:39.353Z",
+      "lastModified": "2025-11-16T16:24:10.996Z",
       "taskCount": 10,
-      "completedCount": 2,
-      "tags": ["master"],
-      "created": "2025-11-16T15:10:45.668Z",
-      "description": "Tasks for master context"
+      "completedCount": 10,
+      "tags": [
+        "master"
+      ]
     }
   }
 }

@@ -26,6 +26,14 @@ model User {
 
   accounts      Account[]
   sessions      Session[]
+  entries       Entry[]
+  templates     EntryTemplate[]
+  auditLogs     AuditLog[]
+  categories    Category[]
+  searchHistory SearchHistory[]
+  workspaces    Workspace[]
+  sharedEntries SharedEntry[]
+  attachments   Attachment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -74,4 +82,234 @@ model VerificationToken {
 
   @@id([identifier, token])
   @@map("verification_tokens")
+}
+
+// Journal Entry Models
+model Entry {
+  id          String   @id @default(cuid())
+  title       String
+  content     String   @db.Text
+  userId      String
+  templateId  String?
+  workspaceId String?
+
+  // Metadata
+  wordCount   Int      @default(0)
+  charCount   Int      @default(0)
+  published   Boolean  @default(false)
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  template    EntryTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
+  categories  EntryCategory[]
+  versions    EntryVersion[]
+  sharedWith  SharedEntry[]
+  attachments Attachment[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([templateId])
+  @@index([workspaceId])
+  @@map("entries")
+}
+
+model EntryTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  content     String   @db.Text
+  userId      String
+  isPublic    Boolean  @default(false)
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entries     Entry[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@map("entry_templates")
+}
+
+// Audit Log Model
+model AuditLog {
+  id           String   @id @default(cuid())
+  userId       String
+  action       String   // e.g., "entry.create", "auth.login", "entry.delete"
+  resourceType String   // e.g., "entry", "user", "session"
+  resourceId   String?  // ID of the affected resource
+  ipAddress    String?
+  userAgent    String?  @db.Text
+  metadata     Json?    // Additional context as JSON
+  success      Boolean  @default(true)
+  errorMessage String?  @db.Text
+
+  // Relations
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt    DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@index([resourceType, resourceId])
+  @@map("audit_logs")
+}
+
+// Category Model with nested support
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  color       String?  // Hex color code for category
+  icon        String?  // Icon name or emoji
+  userId      String
+  parentId    String?  // For nested categories
+  order       Int      @default(0) // For drag-and-drop ordering
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent      Category? @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children    Category[] @relation("CategoryHierarchy")
+  entries     EntryCategory[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([parentId])
+  @@index([order])
+  @@map("categories")
+}
+
+// Many-to-many relationship between entries and categories
+model EntryCategory {
+  entryId    String
+  categoryId String
+
+  entry      Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+
+  @@id([entryId, categoryId])
+  @@index([entryId])
+  @@index([categoryId])
+  @@map("entry_categories")
+}
+
+// Search History Model
+model SearchHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  query     String
+  filters   Json?    // Store filter parameters as JSON
+  resultCount Int    @default(0)
+
+  // Relations
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("search_history")
+}
+
+// Entry Version Control Model
+model EntryVersion {
+  id            String   @id @default(cuid())
+  entryId       String
+  versionNumber Int
+  title         String
+  content       String   @db.Text
+  wordCount     Int
+  charCount     Int
+  changeSummary String?  @db.Text
+
+  // Relations
+  entry         Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime @default(now())
+
+  @@unique([entryId, versionNumber])
+  @@index([entryId])
+  @@index([versionNumber])
+  @@index([createdAt])
+  @@map("entry_versions")
+}
+
+// Workspace Model
+model Workspace {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  type        String   @default("personal") // "personal" or "business"
+  userId      String
+  isDefault   Boolean  @default(false)
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entries     Entry[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([type])
+  @@map("workspaces")
+}
+
+// Shared Entry Model
+model SharedEntry {
+  id          String   @id @default(cuid())
+  entryId     String
+  userId      String   // User who shared the entry
+  sharedWith  String   // Email of user to share with
+  permission  String   @default("view") // "view" or "comment"
+  message     String?  @db.Text
+  expiresAt   DateTime?
+
+  // Relations
+  entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([entryId, sharedWith])
+  @@index([entryId])
+  @@index([userId])
+  @@index([sharedWith])
+  @@index([expiresAt])
+  @@map("shared_entries")
+}
+
+// Attachment Model
+model Attachment {
+  id          String   @id @default(cuid())
+  entryId     String?  // Optional - can be standalone or attached to entry
+  userId      String
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int      // Size in bytes
+  data        Bytes    // Encrypted file data stored as bytea
+  thumbnail   Bytes?   // Optional thumbnail for images/videos
+
+  // Relations
+  entry       Entry?   @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([entryId])
+  @@index([userId])
+  @@index([mimeType])
+  @@map("attachments")
 }
