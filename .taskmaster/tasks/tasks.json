@@ -319,13 +319,203 @@
           }
         ],
         "updatedAt": "2025-11-16T16:00:04.944Z"
+      },
+      {
+        "id": "11",
+        "title": "Implement Import/Export Functionality",
+        "description": "Develop the import/export capabilities for data portability.",
+        "details": "Implement import functions for Evernote (.enex), Markdown, and HTML formats. Develop export functions for Markdown, PDF, HTML, and JSON. Ensure data integrity and handle bulk operations with progress indicators.",
+        "testStrategy": "Test each import/export format with various data sets to ensure accuracy and completeness. Validate data integrity post-import/export.",
+        "priority": "medium",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Analyze Existing Import/Export Code",
+            "description": "Review current codebase for any existing import/export functionalities.",
+            "dependencies": [],
+            "details": "Use the Glob tool to locate files related to import/export, such as '*.js' or 'src/**/*.ts'. Use the Grep tool to search for keywords like 'import', 'export', 'Evernote', 'Markdown', 'HTML', 'PDF', and 'JSON'.",
+            "status": "pending",
+            "testStrategy": null,
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Implement Evernote (.enex) Import Function",
+            "description": "Develop the import function for Evernote (.enex) files.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a new module or extend an existing one to handle .enex file parsing. Ensure the data is correctly mapped to the application's data structure.",
+            "status": "pending",
+            "testStrategy": "Test with various .enex files to ensure correct data import and integrity.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Develop Markdown and HTML Import Functions",
+            "description": "Implement import functions for Markdown and HTML formats.",
+            "dependencies": [
+              1
+            ],
+            "details": "Utilize existing libraries or write custom parsers to handle Markdown and HTML file imports. Ensure compatibility with the application's data model.",
+            "status": "pending",
+            "testStrategy": "Test with diverse Markdown and HTML files to verify data integrity and completeness.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Create Export Functions for Markdown, PDF, HTML, and JSON",
+            "description": "Develop export functionalities for Markdown, PDF, HTML, and JSON formats.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement export logic that converts application data into the specified formats. Ensure data is accurately represented in each format.",
+            "status": "pending",
+            "testStrategy": "Export data in each format and verify the output matches the expected structure and content.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Implement Bulk Operation Handling with Progress Indicators",
+            "description": "Ensure bulk import/export operations are handled efficiently with progress indicators.",
+            "dependencies": [
+              2,
+              3,
+              4
+            ],
+            "details": "Develop a system to manage bulk operations, providing real-time progress feedback to users. Consider using asynchronous processing to enhance performance.",
+            "status": "pending",
+            "testStrategy": "Test bulk operations with large datasets to ensure performance and accuracy, and verify progress indicators update correctly.",
+            "parentId": "undefined"
+          }
+        ],
+        "updatedAt": "2025-11-16T17:01:28.810Z"
+      },
+      {
+        "id": "12",
+        "title": "Develop MCP Server Integration",
+        "description": "Integrate MCP server for AI assistant capabilities.",
+        "details": "Implement MCP server with HTTP transport. Develop tools for CRUD operations and search via MCP. Ensure authentication and rate limiting are in place.",
+        "testStrategy": "Perform integration tests to ensure MCP server handles requests correctly. Validate authentication and rate limiting.",
+        "priority": "medium",
+        "dependencies": [
+          "11"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "13",
+        "title": "Enhance Performance and Polish UI",
+        "description": "Optimize performance and refine UI for production readiness.",
+        "details": "Conduct load testing and optimize page load times, search response times, and entry save operations. Refine UI for mobile responsiveness and dark mode support.",
+        "testStrategy": "Use performance testing tools to measure and optimize load times. Conduct usability testing across devices and browsers.",
+        "priority": "medium",
+        "dependencies": [
+          "12"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "14",
+        "title": "Implement Deferred Features",
+        "description": "Add comments, notifications, 2FA, and user roles.",
+        "details": "Develop comment system with threading, email notifications, two-factor authentication, and user role management (Admin, Editor, Viewer).",
+        "testStrategy": "Unit and integration tests for each feature. Validate security for 2FA and role-based access controls.",
+        "priority": "medium",
+        "dependencies": [
+          "13"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "15",
+        "title": "Develop Plugin System",
+        "description": "Create a plugin architecture for extensibility.",
+        "details": "Design and implement a plugin API with lifecycle hooks and a permission model. Develop example plugins and a marketplace for discovery.",
+        "testStrategy": "Test plugin installation, execution, and security. Validate sandboxing and permission enforcement.",
+        "priority": "medium",
+        "dependencies": [
+          "14"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "16",
+        "title": "Implement Theme System",
+        "description": "Develop a theme system for UI customization.",
+        "details": "Create a structure for theme customization using Tailwind CSS. Implement a marketplace for theme distribution and management.",
+        "testStrategy": "Test theme application and customization across different UI components. Validate compatibility with existing UI elements.",
+        "priority": "medium",
+        "dependencies": [
+          "15"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "17",
+        "title": "Conduct Security Audit and Enhancements",
+        "description": "Perform a comprehensive security audit and implement enhancements.",
+        "details": "Conduct a security audit focusing on OWASP Top 10 vulnerabilities. Implement necessary security enhancements and regular dependency updates.",
+        "testStrategy": "Use automated security scanning tools and manual reviews to identify vulnerabilities. Validate fixes through penetration testing.",
+        "priority": "medium",
+        "dependencies": [
+          "16"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "18",
+        "title": "Finalize Documentation and Guides",
+        "description": "Complete user and developer documentation.",
+        "details": "Finalize user guides, API documentation, and developer setup guides. Ensure comprehensive coverage of all features and integration points.",
+        "testStrategy": "Review documentation for accuracy and completeness. Conduct user testing to ensure guides are clear and helpful.",
+        "priority": "medium",
+        "dependencies": [
+          "17"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "19",
+        "title": "Setup Community and Governance Structures",
+        "description": "Establish community forums and governance for open-source collaboration.",
+        "details": "Set up community forums using Discourse or GitHub Discussions. Define governance structures and contribution guidelines.",
+        "testStrategy": "Monitor community engagement and feedback. Ensure governance processes are clear and effective.",
+        "priority": "medium",
+        "dependencies": [
+          "18"
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": "20",
+        "title": "Prepare for Public Launch",
+        "description": "Finalize preparations for the public launch of OpenJournal.",
+        "details": "Complete final testing, marketing materials, and launch strategy. Ensure all systems are ready for public access.",
+        "testStrategy": "Conduct a final review of all systems and processes. Validate readiness through a soft launch or beta testing phase.",
+        "priority": "medium",
+        "dependencies": [
+          "19"
+        ],
+        "status": "pending",
+        "subtasks": []
       }
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-11-16T16:24:10.996Z",
-      "taskCount": 10,
-      "completedCount": 10,
+      "lastModified": "2025-11-16T17:01:28.811Z",
+      "taskCount": 20,
+      "completedCount": 11,
       "tags": [
         "master"
       ]

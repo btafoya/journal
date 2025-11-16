@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export3.dtd">
+<en-export export-date="20240122T120000Z" application="Evernote" version="10.x">
+  <note>
+    <title>Meeting Notes - January 2024</title>
+    <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
+<en-note>
+  <div><b>Project Kickoff Meeting</b></div>
+  <div><br/></div>
+  <div>Attendees:</div>
+  <ul>
+    <li>Alice (Product Manager)</li>
+    <li>Bob (Tech Lead)</li>
+    <li>Carol (Designer)</li>
+  </ul>
+  <div><br/></div>
+  <div>Key Discussion Points:</div>
+  <ol>
+    <li>Timeline: 6-week sprint</li>
+    <li>Deliverables: MVP with core features</li>
+    <li>Tech stack: Next.js, PostgreSQL, Prisma</li>
+  </ol>
+  <div><br/></div>
+  <div>Action Items:</div>
+  <ul>
+    <li>Bob to create technical architecture diagram</li>
+    <li>Carol to prepare design mockups</li>
+    <li>Alice to draft PRD</li>
+  </ul>
+</en-note>]]></content>
+    <created>20240110T100000Z</created>
+    <updated>20240115T150000Z</updated>
+    <tag>work</tag>
+    <tag>meetings</tag>
+    <tag>planning</tag>
+  </note>
+
+  <note>
+    <title>Book Review: Deep Work</title>
+    <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
+<en-note>
+  <div><i>Deep Work by Cal Newport</i></div>
+  <div><br/></div>
+  <div><b>Core Concept:</b></div>
+  <div>The ability to focus without distraction on cognitively demanding tasks is becoming increasingly valuable in our economy at the same time it is becoming increasingly rare.</div>
+  <div><br/></div>
+  <div><b>Key Takeaways:</b></div>
+  <ul>
+    <li>Deep work is rare and valuable</li>
+    <li>Shallow work is inevitable but should be minimized</li>
+    <li>Create rituals and routines for deep work</li>
+    <li>Embrace boredom to strengthen focus muscles</li>
+  </ul>
+  <div><br/></div>
+  <div><b>Implementation Ideas:</b></div>
+  <ol>
+    <li>Schedule deep work blocks: 9am-12pm daily</li>
+    <li>Eliminate distractions: turn off notifications</li>
+    <li>Create dedicated workspace for focused work</li>
+    <li>Practice deliberate practice on core skills</li>
+  </ol>
+  <div><br/></div>
+  <div>Rating: ⭐⭐⭐⭐⭐ (5/5)</div>
+</en-note>]]></content>
+    <created>20240105T140000Z</created>
+    <updated>20240105T160000Z</updated>
+    <tag>books</tag>
+    <tag>productivity</tag>
+    <tag>personal-development</tag>
+  </note>
+</en-export>
