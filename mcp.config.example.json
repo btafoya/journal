@@ -1,0 +1,51 @@
+{
+  "mcpServers": {
+    "openjournal": {
+      "url": "http://localhost:3000/api/mcp",
+      "transport": "http",
+      "description": "OpenJournal MCP Server - AI assistant integration for journal entries",
+      "tools": [
+        {
+          "name": "listEntries",
+          "description": "List journal entries with optional filtering"
+        },
+        {
+          "name": "getEntry",
+          "description": "Get a specific journal entry by ID"
+        },
+        {
+          "name": "createEntry",
+          "description": "Create a new journal entry"
+        },
+        {
+          "name": "updateEntry",
+          "description": "Update an existing journal entry"
+        },
+        {
+          "name": "deleteEntry",
+          "description": "Delete a journal entry"
+        },
+        {
+          "name": "searchEntries",
+          "description": "Full-text search across journal entries"
+        },
+        {
+          "name": "listCategories",
+          "description": "List all categories"
+        },
+        {
+          "name": "listWorkspaces",
+          "description": "List all workspaces"
+        }
+      ],
+      "authentication": {
+        "type": "session",
+        "description": "Requires NextAuth session authentication"
+      },
+      "rateLimit": {
+        "requests": 60,
+        "window": "1 minute"
+      }
+    }
+  }
+}

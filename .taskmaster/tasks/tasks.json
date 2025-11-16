@@ -403,8 +403,9 @@
         "dependencies": [
           "11"
         ],
-        "status": "pending",
-        "subtasks": []
+        "status": "in-progress",
+        "subtasks": [],
+        "updatedAt": "2025-11-16T17:05:19.907Z"
       },
       {
         "id": "13",
@@ -513,7 +514,7 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-11-16T17:01:28.811Z",
+      "lastModified": "2025-11-16T17:05:19.908Z",
       "taskCount": 20,
       "completedCount": 11,
       "tags": [
