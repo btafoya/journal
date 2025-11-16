@@ -76,3 +76,108 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Tiptap Editor Styles */
+.tiptap-editor {
+  @apply w-full;
+}
+
+.tiptap-editor .ProseMirror {
+  @apply min-h-[200px] focus:outline-none;
+}
+
+/* Placeholder */
+.tiptap-editor .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply text-gray-400 float-left h-0 pointer-events-none;
+}
+
+/* Code Block Styling */
+.tiptap-editor .ProseMirror pre {
+  @apply bg-gray-900 text-gray-100 rounded-md p-4 my-4 overflow-x-auto;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+}
+
+.tiptap-editor .ProseMirror pre code {
+  @apply bg-transparent p-0 text-sm;
+}
+
+/* Inline Code Styling */
+.tiptap-editor .ProseMirror code {
+  @apply bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-sm;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+}
+
+/* Blockquote Styling */
+.tiptap-editor .ProseMirror blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic text-gray-700 my-4;
+}
+
+/* Horizontal Rule */
+.tiptap-editor .ProseMirror hr {
+  @apply my-6 border-t-2 border-gray-300;
+}
+
+/* Headings */
+.tiptap-editor .ProseMirror h1 {
+  @apply text-3xl font-bold mt-6 mb-4;
+}
+
+.tiptap-editor .ProseMirror h2 {
+  @apply text-2xl font-bold mt-5 mb-3;
+}
+
+.tiptap-editor .ProseMirror h3 {
+  @apply text-xl font-bold mt-4 mb-2;
+}
+
+/* Lists */
+.tiptap-editor .ProseMirror ul,
+.tiptap-editor .ProseMirror ol {
+  @apply pl-6 my-4;
+}
+
+.tiptap-editor .ProseMirror ul {
+  @apply list-disc;
+}
+
+.tiptap-editor .ProseMirror ol {
+  @apply list-decimal;
+}
+
+.tiptap-editor .ProseMirror li {
+  @apply mb-1;
+}
+
+/* Syntax Highlighting for Code Blocks */
+.tiptap-editor .ProseMirror pre .hljs-comment,
+.tiptap-editor .ProseMirror pre .hljs-quote {
+  @apply text-gray-500;
+}
+
+.tiptap-editor .ProseMirror pre .hljs-keyword,
+.tiptap-editor .ProseMirror pre .hljs-selector-tag,
+.tiptap-editor .ProseMirror pre .hljs-literal {
+  @apply text-purple-400;
+}
+
+.tiptap-editor .ProseMirror pre .hljs-string,
+.tiptap-editor .ProseMirror pre .hljs-title {
+  @apply text-green-400;
+}
+
+.tiptap-editor .ProseMirror pre .hljs-number,
+.tiptap-editor .ProseMirror pre .hljs-symbol,
+.tiptap-editor .ProseMirror pre .hljs-bullet {
+  @apply text-blue-400;
+}
+
+.tiptap-editor .ProseMirror pre .hljs-function,
+.tiptap-editor .ProseMirror pre .hljs-class {
+  @apply text-yellow-400;
+}
+
+.tiptap-editor .ProseMirror pre .hljs-built_in,
+.tiptap-editor .ProseMirror pre .hljs-attr {
+  @apply text-cyan-400;
+}
