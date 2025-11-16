@@ -34,6 +34,9 @@ model User {
   workspaces    Workspace[]
   sharedEntries SharedEntry[]
   attachments   Attachment[]
+  comments      Comment[]
+  roles         UserRoleAssignment[] @relation("UserRoles")
+  assignedRoles UserRoleAssignment[] @relation("RoleAssignments")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -106,6 +109,7 @@ model Entry {
   versions    EntryVersion[]
   sharedWith  SharedEntry[]
   attachments Attachment[]
+  comments    Comment[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -255,6 +259,7 @@ model Workspace {
   // Relations
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   entries     Entry[]
+  roleAssignments UserRoleAssignment[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -312,4 +317,83 @@ model Attachment {
   @@index([userId])
   @@index([mimeType])
   @@map("attachments")
+}
+
+// Comment System Model with threading
+model Comment {
+  id          String   @id @default(cuid())
+  entryId     String
+  userId      String
+  content     String   @db.Text
+  parentId    String?  // For threaded comments
+  isEdited    Boolean  @default(false)
+  editedAt    DateTime?
+
+  // Relations
+  entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent      Comment? @relation("CommentThread", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     Comment[] @relation("CommentThread")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([entryId])
+  @@index([userId])
+  @@index([parentId])
+  @@index([createdAt])
+  @@map("comments")
+}
+
+// User Role Model for RBAC
+enum UserRole {
+  ADMIN   // Full system access
+  EDITOR  // Can create and edit entries
+  VIEWER  // Read-only access
+}
+
+// User Role Assignment Model
+model UserRoleAssignment {
+  id          String   @id @default(cuid())
+  userId      String
+  role        UserRole @default(VIEWER)
+  workspaceId String?  // Optional workspace-specific role
+  assignedBy  String   // User ID who assigned the role
+
+  // Relations
+  user        User     @relation("UserRoles", fields: [userId], references: [id], onDelete: Cascade)
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  assignedByUser User  @relation("RoleAssignments", fields: [assignedBy], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, workspaceId])
+  @@index([userId])
+  @@index([role])
+  @@index([workspaceId])
+  @@map("user_role_assignments")
+}
+
+// Email Notification Model
+model EmailNotification {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // e.g., "comment.new", "entry.shared", "role.assigned"
+  subject     String
+  content     String   @db.Text
+  recipientEmail String
+  sent        Boolean  @default(false)
+  sentAt      DateTime?
+  error       String?  @db.Text
+  metadata    Json?    // Additional context as JSON
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([sent])
+  @@index([type])
+  @@index([createdAt])
+  @@map("email_notifications")
 }

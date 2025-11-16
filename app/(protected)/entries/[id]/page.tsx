@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { CommentList } from "@/components/comments/comment-list";
 
 interface Entry {
   id: string;
@@ -23,6 +25,7 @@ interface Entry {
 export default function EntryPage() {
   const router = useRouter();
   const params = useParams();
+  const { data: session } = useSession();
   const [entry, setEntry] = useState<Entry | null>(null);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
@@ -182,12 +185,19 @@ export default function EntryPage() {
       </div>
 
       {/* Content */}
-      <div className="prose max-w-none">
+      <div className="prose max-w-none mb-12">
         <div
           className="entry-content"
           dangerouslySetInnerHTML={{ __html: entry.content }}
         />
       </div>
+
+      {/* Comments Section */}
+      {session?.user?.id && (
+        <div className="border-t border-gray-200 pt-12 mt-12">
+          <CommentList entryId={entry.id} currentUserId={session.user.id} />
+        </div>
+      )}
 
       <style jsx global>{`
         .entry-content {
