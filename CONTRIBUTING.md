@@ -96,8 +96,8 @@ Screenshots, mockups, or examples.
 
 1. **Fork the Repository**
    ```bash
-   git clone https://github.com/yourusername/openjournal.git
-   cd openjournal
+   git clone https://github.com/btafoya/journal.git
+   cd journal
    ```
 
 2. **Create a Branch**
@@ -189,8 +189,8 @@ Add screenshots here.
 2. **Installation**
    ```bash
    # Clone your fork
-   git clone https://github.com/yourusername/openjournal.git
-   cd openjournal
+   git clone https://github.com/btafoya/journal.git
+   cd journal
 
    # Install dependencies
    pnpm install

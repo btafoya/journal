@@ -4,9 +4,11 @@
 [![Security Score](https://img.shields.io/badge/Security-95%2F100-brightgreen)](docs/SECURITY.md)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
-[![Project Status](https://img.shields.io/badge/Status-Production%20Ready-success)](https://github.com/yourusername/openjournal)
+[![Project Status](https://img.shields.io/badge/Status-Production%20Ready-success)](https://github.com/btafoya/journal)
 
-OpenJournal is an open-source, feature-rich journaling application designed to serve both personal and business documentation needs with enterprise-grade security and flexibility.
+**OpenJournal** is an open-source, feature-rich journaling application designed to serve both personal and business documentation needs with enterprise-grade security and flexibility.
+
+**Repository**: [https://github.com/btafoya/journal](https://github.com/btafoya/journal)
 
 > **Project Status**: ✅ **Production Ready** - All 18 core features implemented and fully documented
 
@@ -77,7 +79,7 @@ OpenJournal is an open-source, feature-rich journaling application designed to s
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/btafoya/journal.git
 cd journal
 ```
 
@@ -278,8 +280,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 ## Support
 
 - 📖 **Documentation**: Check our comprehensive [docs](docs/)
-- 💬 **Discussions**: Join our [GitHub Discussions](https://github.com/yourusername/openjournal/discussions)
-- 🐛 **Issues**: Report bugs via [GitHub Issues](https://github.com/yourusername/openjournal/issues)
+- 💬 **Discussions**: Join our [GitHub Discussions](https://github.com/btafoya/journal/discussions)
+- 🐛 **Issues**: Report bugs via [GitHub Issues](https://github.com/btafoya/journal/issues)
 - 📧 **Email**: contact@openjournal.dev (for security issues, see [SECURITY.md](docs/SECURITY.md))
 
 ## License
