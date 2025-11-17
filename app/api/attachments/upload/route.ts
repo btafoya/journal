@@ -10,6 +10,7 @@ import {
 } from "@/lib/file-encryption";
 import { auditLogFromRequest, AuditAction, ResourceType } from "@/lib/audit-log";
 import crypto from "crypto";
+import { fileTypeFromBuffer } from "file-type";
 
 // POST /api/attachments/upload - Upload a file attachment
 export async function POST(request: Request) {
@@ -63,6 +64,25 @@ export async function POST(request: Request) {
     // Read file as buffer
     const arrayBuffer = await file.arrayBuffer();
     const fileBuffer = Buffer.from(arrayBuffer);
+
+    // Validate file content using magic numbers (prevents MIME type spoofing)
+    const detectedType = await fileTypeFromBuffer(fileBuffer);
+    if (!detectedType) {
+      return NextResponse.json(
+        { error: "Unable to verify file type. File may be corrupted or unsupported." },
+        { status: 400 }
+      );
+    }
+
+    // Verify detected MIME type matches declared MIME type
+    if (detectedType.mime !== file.type) {
+      return NextResponse.json(
+        {
+          error: `File type mismatch. Declared: ${file.type}, Detected: ${detectedType.mime}`,
+        },
+        { status: 400 }
+      );
+    }
 
     // Encrypt file
     const encryptedBuffer = encryptFile(fileBuffer);

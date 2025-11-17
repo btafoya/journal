@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { CommentList } from "@/components/comments/comment-list";
+import { sanitizeHtml } from "@/lib/security/sanitize";
 
 interface Entry {
   id: string;
@@ -29,6 +30,11 @@ export default function EntryPage() {
   const [entry, setEntry] = useState<Entry | null>(null);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
+
+  // Sanitize entry content to prevent XSS attacks
+  const sanitizedContent = useMemo(() => {
+    return entry?.content ? sanitizeHtml(entry.content) : '';
+  }, [entry?.content]);
 
   useEffect(() => {
     if (params.id) {
@@ -188,7 +194,7 @@ export default function EntryPage() {
       <div className="prose max-w-none mb-12">
         <div
           className="entry-content"
-          dangerouslySetInnerHTML={{ __html: entry.content }}
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
       </div>
 
