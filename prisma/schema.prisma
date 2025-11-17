@@ -38,6 +38,8 @@ model User {
   roles         UserRoleAssignment[] @relation("UserRoles")
   assignedRoles UserRoleAssignment[] @relation("RoleAssignments")
   installedPlugins InstalledPlugin[]
+  installedThemes  InstalledTheme[]
+  preferredTheme   String?          // User's active theme ID
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -548,4 +550,97 @@ model PluginRegistry {
   @@index([featured])
   @@index([verified])
   @@map("plugin_registry")
+}
+
+// Theme System Models
+
+// Theme status enum
+enum ThemeStatus {
+  ACTIVE
+  INACTIVE
+  ERROR
+}
+
+// Installed themes (per user)
+model InstalledTheme {
+  id          String   @id @default(cuid())
+  userId      String
+  themeId     String   // Reference to theme in registry/marketplace
+  version     String
+  status      ThemeStatus @default(INACTIVE)
+  isActive    Boolean  @default(false) // Only one theme can be active per user
+
+  // Configuration overrides
+  config      Json?    // User-specific theme configuration
+
+  // Metadata
+  installedAt DateTime @default(now())
+  lastEnabled DateTime?
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, themeId])
+  @@index([userId])
+  @@index([themeId])
+  @@index([isActive])
+  @@map("installed_themes")
+}
+
+// Theme Registry (marketplace/catalog)
+model ThemeRegistry {
+  id          String   @id @default(cuid())
+  themeId     String   @unique // Unique identifier (e.g., "ocean-breeze")
+  name        String
+  description String   @db.Text
+  author      String
+  authorEmail String?
+  authorUrl   String?
+  version     String
+  minAppVersion String // Minimum app version required
+
+  // Theme definition
+  colors      Json     // Color palette (background, foreground, primary, etc.)
+  typography  Json?    // Font families and sizes
+  spacing     Json?    // Custom spacing values
+  radius      String?  // Border radius
+
+  // Metadata
+  category    String   // light, dark, colorful, minimal, etc.
+  tags        String[] // Searchable tags (ocean, blue, professional, etc.)
+  previewUrl  String?  // URL to preview image
+  homepage    String?
+  repository  String?
+  license     String?  @default("MIT")
+
+  // Distribution
+  downloadUrl String?
+  packageUrl  String?  // npm package or download URL
+  checksum    String?  // SHA-256 checksum
+
+  // Stats
+  downloadCount Int    @default(0)
+  activeInstalls Int   @default(0)
+  rating      Float?   @default(0)
+
+  // Status
+  verified    Boolean  @default(false) // Verified by team
+  featured    Boolean  @default(false)
+  deprecated  Boolean  @default(false)
+
+  // Compatibility
+  compatibleWith String[] // Compatible app versions
+
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([themeId])
+  @@index([category])
+  @@index([featured])
+  @@index([verified])
+  @@map("theme_registry")
 }
