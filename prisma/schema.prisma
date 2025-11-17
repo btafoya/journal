@@ -37,6 +37,7 @@ model User {
   comments      Comment[]
   roles         UserRoleAssignment[] @relation("UserRoles")
   assignedRoles UserRoleAssignment[] @relation("RoleAssignments")
+  installedPlugins InstalledPlugin[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -396,4 +397,155 @@ model EmailNotification {
   @@index([type])
   @@index([createdAt])
   @@map("email_notifications")
+}
+
+// Plugin System Models
+
+// Plugin status enum
+enum PluginStatus {
+  ACTIVE
+  INACTIVE
+  ERROR
+  SUSPENDED
+}
+
+// Plugin permission categories
+enum PluginPermission {
+  READ_ENTRIES       // Read journal entries
+  WRITE_ENTRIES      // Create/modify entries
+  DELETE_ENTRIES     // Delete entries
+  READ_USER_DATA     // Access user profile data
+  MANAGE_FILES       // Access attachments
+  NETWORK_ACCESS     // Make HTTP requests
+  DATABASE_ACCESS    // Direct database operations
+  EXECUTE_SCRIPTS    // Run custom scripts
+  MODIFY_UI          // Add UI components
+  ACCESS_SETTINGS    // Read/write settings
+}
+
+// Installed plugins (per user)
+model InstalledPlugin {
+  id          String   @id @default(cuid())
+  userId      String
+  pluginId    String   // Reference to plugin in registry/marketplace
+  version     String
+  status      PluginStatus @default(INACTIVE)
+
+  // Configuration
+  config      Json?    // Plugin-specific configuration
+  permissions String[] // Array of granted permissions
+
+  // Metadata
+  installedAt DateTime @default(now())
+  lastEnabled DateTime?
+  lastDisabled DateTime?
+  errorMessage String?  @db.Text
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hooks       PluginHook[]
+  storage     PluginStorage[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, pluginId])
+  @@index([userId])
+  @@index([pluginId])
+  @@index([status])
+  @@map("installed_plugins")
+}
+
+// Plugin lifecycle hooks registration
+model PluginHook {
+  id          String   @id @default(cuid())
+  pluginId    String
+  hookName    String   // onActivate, onDeactivate, onEntryCreate, etc.
+  handlerPath String   // Path to handler function
+  priority    Int      @default(10) // Execution priority (lower = earlier)
+  enabled     Boolean  @default(true)
+
+  // Relations
+  plugin      InstalledPlugin @relation(fields: [pluginId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([pluginId, hookName, handlerPath])
+  @@index([hookName])
+  @@index([priority])
+  @@map("plugin_hooks")
+}
+
+// Plugin storage (key-value store per plugin)
+model PluginStorage {
+  id          String   @id @default(cuid())
+  pluginId    String
+  key         String
+  value       Json     // Stored as JSON for flexibility
+  encrypted   Boolean  @default(false) // Whether value is encrypted
+
+  // Relations
+  plugin      InstalledPlugin @relation(fields: [pluginId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([pluginId, key])
+  @@index([pluginId])
+  @@map("plugin_storage")
+}
+
+// Plugin Registry (marketplace/catalog)
+model PluginRegistry {
+  id          String   @id @default(cuid())
+  pluginId    String   @unique // Unique identifier (e.g., "theme-dark-mode")
+  name        String
+  description String   @db.Text
+  author      String
+  authorEmail String?
+  authorUrl   String?
+  version     String
+  minAppVersion String // Minimum OpenJournal version required
+
+  // Manifest
+  manifest    Json     // Full plugin manifest
+  homepage    String?
+  repository  String?
+  license     String?  @default("MIT")
+
+  // Categories and tags
+  category    String   // theme, export, widget, integration, etc.
+  tags        String[] // searchable tags
+
+  // Permissions required
+  requiredPermissions String[] // Array of PluginPermission values
+
+  // Distribution
+  downloadUrl String?
+  checksum    String?  // SHA-256 checksum for security
+
+  // Stats
+  downloadCount Int    @default(0)
+  activeInstalls Int   @default(0)
+  rating      Float?   @default(0)
+
+  // Status
+  verified    Boolean  @default(false) // Verified by OpenJournal team
+  featured    Boolean  @default(false)
+  deprecated  Boolean  @default(false)
+
+  // Security
+  securityScan Json?   // Results of automated security scans
+  lastScanned DateTime?
+
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([pluginId])
+  @@index([category])
+  @@index([featured])
+  @@index([verified])
+  @@map("plugin_registry")
 }

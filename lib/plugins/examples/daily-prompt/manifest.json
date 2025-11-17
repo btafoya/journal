@@ -1,0 +1,33 @@
+{
+  "id": "daily-prompt",
+  "name": "Daily Journaling Prompts",
+  "version": "1.0.0",
+  "description": "Displays a random journaling prompt each day to inspire your writing",
+  "author": "Journal App Team",
+  "minAppVersion": "1.0.0",
+  "permissions": [
+    "MODIFY_UI",
+    "READ_USER_DATA"
+  ],
+  "main": "index.js",
+  "hooks": {
+    "onActivate": "hooks/onActivate.js",
+    "onDeactivate": "hooks/onDeactivate.js"
+  },
+  "category": "productivity",
+  "tags": ["prompts", "inspiration", "writing"],
+  "configSchema": {
+    "showTime": {
+      "type": "string",
+      "enum": ["morning", "afternoon", "evening", "always"],
+      "default": "morning",
+      "description": "When to show the daily prompt"
+    },
+    "customPrompts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Add your own custom prompts"
+    }
+  }
+}
