@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SessionProvider } from "@/components/providers/session-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Navigation } from "@/components/navigation";
+import { auth } from "@/lib/auth";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,16 +23,21 @@ export const metadata: Metadata = {
     "Open-source journaling application with enterprise-grade security, rich text editing, and version control.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider defaultTheme="system" storageKey="openjournal-theme">
-          <SessionProvider>{children}</SessionProvider>
+          <SessionProvider session={session}>
+            <Navigation />
+            <main>{children}</main>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

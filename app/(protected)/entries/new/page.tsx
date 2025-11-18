@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import { CategoryPicker } from "@/components/categories/category-picker";
 
 // Dynamically import the TiptapEditor to avoid SSR issues
 const TiptapEditor = dynamic(
@@ -23,6 +24,7 @@ export default function NewEntryPage() {
   const [content, setContent] = useState("");
   const [templateId, setTemplateId] = useState<string>("");
   const [published, setPublished] = useState(false);
+  const [categoryIds, setCategoryIds] = useState<string[]>([]);
   const [templates, setTemplates] = useState<EntryTemplate[]>([]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -85,6 +87,7 @@ export default function NewEntryPage() {
           content,
           templateId: templateId || null,
           published: shouldPublish,
+          categoryIds,
         }),
       });
 
@@ -160,6 +163,17 @@ export default function NewEntryPage() {
               placeholder="Start writing your entry..."
             />
           </div>
+        </div>
+
+        {/* Categories */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Categories (Optional)
+          </label>
+          <CategoryPicker
+            selectedIds={categoryIds}
+            onChange={setCategoryIds}
+          />
         </div>
 
         {/* Published Status */}

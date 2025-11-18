@@ -1,15 +1,11 @@
 import { auth } from "@/lib/auth";
 import Link from "next/link";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export default async function Home() {
   const session = await auth();
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-12">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
       <div className="w-full max-w-4xl space-y-8 text-center">
         <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-foreground">
           Open<span className="text-primary">Journal</span>

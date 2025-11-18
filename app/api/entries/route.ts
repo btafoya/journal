@@ -98,7 +98,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { title, content, templateId, workspaceId, published = false } = body;
+    const { title, content, templateId, workspaceId, published = false, categoryIds = [] } = body;
 
     if (!title || !content) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -151,6 +151,13 @@ export async function POST(request: Request) {
         wordCount,
         charCount,
         published,
+        categories: {
+          create: categoryIds.map((categoryId: string) => ({
+            category: {
+              connect: { id: categoryId },
+            },
+          })),
+        },
       },
       include: {
         template: {
@@ -164,6 +171,11 @@ export async function POST(request: Request) {
             id: true,
             name: true,
             type: true,
+          },
+        },
+        categories: {
+          include: {
+            category: true,
           },
         },
       },
