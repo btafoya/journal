@@ -18,6 +18,8 @@ declare module "next-auth" {
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
+  secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,

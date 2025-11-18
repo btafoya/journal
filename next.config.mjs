@@ -25,9 +25,6 @@ const nextConfig = {
     // Enable caching for faster rebuilds
     config.cache = {
       type: 'filesystem',
-      buildDependencies: {
-        config: [__filename],
-      },
     };
 
     // Optimize bundle size

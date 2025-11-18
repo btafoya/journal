@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 
 // Dynamically import the TiptapEditor to avoid SSR issues
 const TiptapEditor = dynamic(
-  () => import("@/components/editor/tiptap-editor"),
+  () => import("@/components/editor/tiptap-editor").then((mod) => mod.TiptapEditor),
   { ssr: false }
 );
 

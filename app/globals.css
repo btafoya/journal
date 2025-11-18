@@ -75,6 +75,46 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Global input styling - ensure text is always visible */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  textarea {
+    @apply bg-white text-gray-900;
+  }
+
+  .dark input[type="text"],
+  .dark input[type="email"],
+  .dark input[type="password"],
+  .dark input[type="search"],
+  .dark input[type="tel"],
+  .dark input[type="url"],
+  .dark input[type="number"],
+  .dark textarea {
+    @apply bg-gray-800 text-gray-100;
+  }
+
+  /* Fix autofill styling for inputs */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #0a0a0a !important;
+  }
+
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus,
+  .dark input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1f2937 inset !important;
+    -webkit-text-fill-color: #f3f4f6 !important;
+  }
 }
 
 /* Tiptap Editor Styles */

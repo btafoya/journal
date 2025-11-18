@@ -41,6 +41,7 @@ export function TiptapEditor({
     ],
     content,
     editable,
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         class:
