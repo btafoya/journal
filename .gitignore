@@ -37,3 +37,4 @@ next-env.d.ts
 
 /lib/generated/prisma
 .env
+.serena/
