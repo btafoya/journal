@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Plus, AlertCircle } from "lucide-react";
-import { CategoryTree, Category } from "@/components/categories/category-tree";
+import { SortableCategoryTree } from "@/components/categories/sortable-category-tree";
+import { Category } from "@/components/categories/category-tree";
 import { CategoryDialog } from "@/components/categories/category-dialog";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -69,6 +70,26 @@ export default function CategoriesPage() {
     fetchCategories();
   };
 
+  const handleReorder = async (updates: Array<{ id: string; order: number; parentId?: string | null }>) => {
+    try {
+      const response = await fetch("/api/categories/reorder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ updates }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to reorder categories");
+      }
+
+      // Refresh categories to get updated order
+      fetchCategories();
+    } catch (error) {
+      console.error("Error reordering categories:", error);
+      throw error; // Re-throw to trigger revert in component
+    }
+  };
+
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -115,13 +136,13 @@ export default function CategoriesPage() {
 
       {/* Categories Tree */}
       <div className="bg-card border rounded-lg p-6">
-        <CategoryTree
+        <SortableCategoryTree
           categories={categories}
-          showActions={true}
-          showCounts={true}
+          onReorder={handleReorder}
           onAdd={handleAdd}
           onEdit={handleEdit}
           onDelete={handleDelete}
+          showCounts={true}
         />
       </div>
 

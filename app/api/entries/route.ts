@@ -19,6 +19,7 @@ export async function GET(request: Request) {
     const search = searchParams.get("search") || "";
     const published = searchParams.get("published");
     const workspaceId = searchParams.get("workspaceId");
+    const categoryId = searchParams.get("categoryId");
 
     const skip = (page - 1) * limit;
 
@@ -39,6 +40,14 @@ export async function GET(request: Request) {
       where.workspaceId = workspaceId;
     }
 
+    if (categoryId) {
+      where.categories = {
+        some: {
+          categoryId: categoryId,
+        },
+      };
+    }
+
     // Get entries with pagination
     const [entries, total] = await Promise.all([
       prisma.entry.findMany({
@@ -55,6 +64,11 @@ export async function GET(request: Request) {
               id: true,
               name: true,
               type: true,
+            },
+          },
+          categories: {
+            include: {
+              category: true,
             },
           },
         },
